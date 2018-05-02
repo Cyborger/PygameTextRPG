@@ -2,13 +2,14 @@ import pygame
 
 
 class Button:
-    def __init__(self, image, x, y):
+    def __init__(self, image, x, y, func):
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
 
         self.hovered = False
+        self.click = func
 
     def update(self, mousePosition):
         if self.isHovering(mousePosition) and not self.hovered:
