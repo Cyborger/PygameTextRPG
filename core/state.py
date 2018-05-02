@@ -1,0 +1,27 @@
+class State:
+    def __init__(self, name, game):
+        self.name = name
+        self.game = game
+        self.menus = []
+        self.currentMenu = None
+
+    def addMenu(self, menu):
+        self.menus.append(menu)
+        
+    def getMenu(self, menuName):
+        for menu in self.menus:
+            if menu.name == menuName:
+                return menu
+        else:
+            raise MenuNotFoundException(menuName)
+
+    def changeMenu(self, menuName):
+        self.currentMenu = self.getMenu(menuName)
+
+    def getRoot(self):
+        return self.game
+
+
+class MenuNotFoundException(Exception):
+    def __init__(self, name):
+        super().__init__("Unable to find menu: " + name)
