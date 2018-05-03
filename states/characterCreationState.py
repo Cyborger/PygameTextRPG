@@ -11,4 +11,4 @@ class CharacterCreationState(State):
         self.playerIntelligence = 10
         self.playerLuck = 10
 
-        self.addMenu(AllocateStatsMenu(self))
+        #self.addMenu(AllocateStatsMenu(self))

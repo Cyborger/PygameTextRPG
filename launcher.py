@@ -1,6 +1,8 @@
 import pygame
+import os
 
 from core.game import Game
+
 
 def launch():
     pygame.init()
