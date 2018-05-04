@@ -7,7 +7,7 @@ class State:
 
     def addMenu(self, menu):
         self.menus.append(menu)
-        
+
     def getMenu(self, menuName):
         for menu in self.menus:
             if menu.name == menuName:
@@ -20,6 +20,9 @@ class State:
 
     def getRoot(self):
         return self.game
+
+    def resetCurrentMenu(self):
+        self.currentMenu.__init__(self)
 
 
 class MenuNotFoundException(Exception):

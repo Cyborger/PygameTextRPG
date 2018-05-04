@@ -1,13 +1,11 @@
 import pygame
-import os
-
 from states.titleMenuState import TitleMenuState
 from states.characterCreationState import CharacterCreationState
 
 
 class Game:
     def __init__(self):
-        pygame.display.set_icon(pygame.image.load("res/icon.png"))
+        pygame.display.set_icon(pygame.image.load("res/images/icon.png"))
         pygame.display.set_caption("RPG")
         self.displayWidth = 700
         self.displayHeight = 700
@@ -33,10 +31,12 @@ class Game:
     def clearScreen(self, color=(0, 0, 0)):
         self.display.fill(color)
 
-    def changeMenu(self, menuPath):
+    def changeMenu(self, menuPath, resetMenu=False):
         splitPath = menuPath.split("/")
         self.currentState = self.getState(splitPath[0])
         self.currentState.changeMenu(splitPath[1])
+        if resetMenu:
+            self.currentState.resetCurrentMenu()
 
     def getState(self, stateName):
         for state in self.states:
@@ -50,9 +50,9 @@ class Game:
         splitPath = menuPath.split("/")
         return self.getState(splitPath[0]).getMenu(splitPath[1])
 
-    def fadeMenuChange(self, menuPath):
+    def fadeMenuChange(self, menuPath, resetMenu=False):
         self.fadeOut(2)
-        self.changeMenu(menuPath)
+        self.changeMenu(menuPath, resetMenu)
         self.currentState.currentMenu.render()
         self.fadeIn(2)
 

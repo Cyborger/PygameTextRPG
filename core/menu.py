@@ -7,6 +7,7 @@ class Menu:
         self.parentState = parentState
         self.buttons = []
         self.labels = []
+        self.buttonSelection = 0
 
     def update(self):
         self.handleEvents()
@@ -20,6 +21,11 @@ class Menu:
         for event in events:
             if event.type == pygame.QUIT:
                 self.getRoot().running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_w:
+                    self.selectAboveButton()
+                elif event.key == pygame.K_s:
+                    self.selectBelowButton()
         self.handleButtonEvents(events)
 
     def draw(self, surface, position=(0, 0)):
@@ -45,3 +51,18 @@ class Menu:
 
     def getParent(self):
         return self.parentState
+
+    def selectAboveButton(self):
+        self.buttonSelection = max(self.buttonSelection - 1, 0)
+        self.focusSelectedButton()
+
+    def selectBelowButton(self):
+        self.buttonSelection = min(self.buttonSelection + 1, len(self.buttons))
+        self.focusSelectedButton()
+
+    def focusSelectedButton(self):
+        for i in range(len(self.buttons)):
+            if i == self.buttonSelection:
+                self.buttons[i].hover()
+            else:
+                self.buttons[i].unhover()

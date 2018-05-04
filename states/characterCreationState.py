@@ -9,6 +9,7 @@ class CharacterCreationState(State):
         self.playerStrength = 10
         self.playerDexterity = 10
         self.playerIntelligence = 10
+        self.playerCharisma = 10
         self.playerLuck = 10
 
-        #self.addMenu(AllocateStatsMenu(self))
+        self.addMenu(AllocateStatsMenu(self))

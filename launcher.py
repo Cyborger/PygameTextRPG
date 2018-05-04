@@ -1,6 +1,4 @@
 import pygame
-import os
-
 from core.game import Game
 
 
