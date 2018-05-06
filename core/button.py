@@ -2,7 +2,7 @@ import pygame
 
 
 class Button:
-    def __init__(self, image, x, y, func):
+    def __init__(self, image, x, y, func, *funcArgs):
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -10,6 +10,7 @@ class Button:
 
         self.hovered = False
         self.click = func
+        self.funcArgs = funcArgs
 
     def update(self, mousePosition):
         if self.isHovering(mousePosition) and not self.hovered:
@@ -26,7 +27,15 @@ class Button:
 
     def checkForClick(self):
         if self.hovered:
-            self.click()
+            self.click(*self.funcArgs)
+
+    def forceHover(self):
+        self.hovered = True
+        self.hover()
+
+    def forceUnhover(self):
+        self.hovered = False
+        self.unhover()
 
     def hover(self):
         pass

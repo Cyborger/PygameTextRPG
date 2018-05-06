@@ -3,12 +3,11 @@ from core.button import Button
 
 
 class LabelButton(Button):
-    def __init__(self, text, x, y, func, fontSize=24):
+    def __init__(self, text, x, y, func, *funcArgs):
         self.text = text
-        self.font = pygame.font.Font("res/fonts/PressStart2P-Regular.ttf",
-                                     fontSize)
+        self.font = pygame.font.Font("res/fonts/PressStart2P-Regular.ttf", 24)
         super().__init__(self.font.render(self.text, True, (200, 200, 200)),
-                         x, y, func)
+                         x, y, func, *funcArgs)
 
     def hover(self):
         self.image = self.font.render(">" + self.text, True, (255, 255, 255))
