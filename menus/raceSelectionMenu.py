@@ -1,17 +1,22 @@
 from core.menu import Menu
+from core.label import Label
 from core.labelButton import LabelButton
 
 
 class RaceSelectionMenu(Menu):
     def __init__(self, parentState):
         super().__init__("raceSelectionMenu", parentState)
-        self.races = ["Human", "Elf", "Dwarf", "Halfling"]
+        self.races = ["Human", "Elf", "Dwarf", "Orc", "Halfling", "Ratfolk"]
+        self.createLabels()
         self.createButtons()
+
+    def createLabels(self):
+        self.addLabel(Label("Choose a race: ", 10, 20, fontSize = 32))
 
     def createButtons(self):
         x = 40
-        y = 40
-        ySpacing = 90
+        y = 70
+        ySpacing = 60
         for race in self.races:
             self.addButton(LabelButton(race, x, y, self.chooseRace, race))
             y += ySpacing
@@ -19,7 +24,7 @@ class RaceSelectionMenu(Menu):
 
     def chooseRace(self, raceName):
         self.getParent().newPlayer.race = raceName
-        print("Player race: " + self.getParent().newPlayer.race)
+        self.getRoot().fadeMenuChange("characterCreationState/nameChoosingMenu")
 
     def goBack(self):
         self.getRoot().fadeMenuChange("characterCreationState/allocateStatsMenu")

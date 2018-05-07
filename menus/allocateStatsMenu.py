@@ -4,12 +4,11 @@ from core.labelButton import LabelButton
 from core.imageButton import ImageButton
 from core.label import Label
 
-#TODO: CLEANUP
 
 class AllocateStatsMenu(Menu):
     def __init__(self, parentState):
         super().__init__("allocateStatsMenu", parentState)
-        self.pointsToAllocate = 20
+        self.pointsToAllocate = 10
         self.generateLabels()
         self.generateButtons()
 
@@ -20,8 +19,11 @@ class AllocateStatsMenu(Menu):
         spacing = 80
         for stat in self.getParent().newPlayer.stats:
             self.addLabel(Label(stat, statX, y))
-            self.addLabel(Label(str(self.getParent().newPlayer.stats[stat]),
-                                valueX, y))
+            statValue = self.getParent().newPlayer.stats[stat]
+            statString = str(statValue)
+            if statValue < 10:
+                statString = "0" + statString
+            self.addLabel(Label(statString, valueX, y))
             y += spacing
         self.addLabel(Label("Points left: " + str(self.pointsToAllocate),
                             statX, y))
@@ -53,7 +55,7 @@ class AllocateStatsMenu(Menu):
 
 
     def decreaseStat(self, statName):
-        if self.getParent().newPlayer.stats[statName] > 10:
+        if self.getParent().newPlayer.stats[statName] > 6:
             self.getParent().newPlayer.stats[statName] -= 1
             self.pointsToAllocate += 1
             self.refreshLabels()
