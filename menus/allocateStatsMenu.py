@@ -16,8 +16,8 @@ class AllocateStatsMenu(Menu):
     def generateLabels(self):
         statX = 60
         valueX = 450
-        y = 100
-        spacing = 90
+        y = 70
+        spacing = 80
         for stat in self.getParent().newPlayer.stats:
             self.addLabel(Label(stat, statX, y))
             self.addLabel(Label(str(self.getParent().newPlayer.stats[stat]),
@@ -28,8 +28,8 @@ class AllocateStatsMenu(Menu):
 
     def generateButtons(self):
         x = 20
-        y = 90
-        spacing = 60
+        y = 60
+        spacing = 50
         arrowSpacing = 30
         upArrow = pygame.image.load("res/images/upArrowDefault.png")
         upArrowHovered = pygame.image.load("res/images/upArrowHovered.png")
@@ -42,6 +42,7 @@ class AllocateStatsMenu(Menu):
             self.addButton(ImageButton(downArrow, downArrowHovered, x, y,
                                        self.decreaseStat, stat))
             y += spacing
+        self.addButton(LabelButton("Continue", x, 600, self.nextMenu))
         self.addButton(LabelButton("Back", x, 650, self.goBack))
 
     def increaseStat(self, statName):
@@ -60,6 +61,9 @@ class AllocateStatsMenu(Menu):
     def refreshLabels(self):
         self.labels[:] = []
         self.generateLabels()
+
+    def nextMenu(self):
+        self.getRoot().fadeMenuChange("characterCreationState/raceSelectionMenu")
 
     def goBack(self):
         self.getRoot().fadeMenuChange("titleMenuState/titleMenu")
