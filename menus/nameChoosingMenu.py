@@ -7,8 +7,8 @@ from core.inputField import InputField
 class NameChoosingMenu(Menu):
     def __init__(self, parentState):
         super().__init__("nameChoosingMenu", parentState)
-        self.addLabel(Label("Enter your name: ", 20, 20))
-        self.addButton(InputField(20, 120, self))
+        self.addLabel(Label("Enter your name: ", 20, 275))
+        self.addButton(InputField(20, 325))
         self.addButton(LabelButton("Back", 20, 650, self.goBack))
 
     def goBack(self):

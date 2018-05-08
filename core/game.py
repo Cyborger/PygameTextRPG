@@ -10,7 +10,7 @@ class Game:
         self.display = Display(700, 700)
         self.states = [TitleMenuState(self), CharacterCreationState(self)]
         self.currentState = None
-        self.changeMenu("titleMenuState/titleMenu")
+        self.changeMenu("characterCreationState/nameChoosingMenu")
         self.running = True
 
     def loop(self):
@@ -26,6 +26,7 @@ class Game:
         self.currentState.changeMenu(splitPath[1])
         if resetMenu:
             self.currentState.resetCurrentMenu()
+        self.currentState.currentMenu.buttonSelection = 0
         self.currentState.currentMenu.updateButtonFocus()
 
     def getState(self, stateName):
