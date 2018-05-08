@@ -13,8 +13,11 @@ class NameChoosingMenu(Menu):
         self.addButton(LabelButton("Back", 20, 650, self.goBack))
 
     def nextMenu(self):
+        newPlayer = self.getParent().newPlayer
+        newPlayer.name = self.buttons[0].inputLabel.text
+        self.getRoot().getState("locationState").player = newPlayer
         self.getRoot().fadeMenuChange("locationState/mainLocationMenu")
-        
+
     def goBack(self):
         newMenu = "characterCreationState/raceSelectionMenu"
         self.getRoot().fadeMenuChange(newMenu)

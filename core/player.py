@@ -7,3 +7,9 @@ class Player:
                       "Dexterity": 10,
                       "Charisma": 10,
                       "Luck": 10}
+
+    def printInfo(self):
+        print("Name: " + self.name)
+        print("Race: " + self.race)
+        for stat in self.stats:
+            print(stat + ": " + str(self.stats[stat]))

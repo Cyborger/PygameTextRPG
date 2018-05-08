@@ -12,7 +12,7 @@ class Game:
         self.states = [TitleMenuState(self), CharacterCreationState(self),
                        LocationState(self)]
         self.currentState = None
-        self.changeMenu("characterCreationState/nameChoosingMenu")
+        self.changeMenu("titleMenuState/titleMenu")
         self.running = True
 
     def loop(self):
@@ -28,7 +28,6 @@ class Game:
         self.currentState.changeMenu(splitPath[1])
         if resetMenu:
             self.currentState.resetCurrentMenu()
-        self.currentState.currentMenu.buttonSelection = 0
         self.currentState.currentMenu.updateButtonFocus()
 
     def getState(self, stateName):
@@ -47,11 +46,11 @@ class Game:
         self.display.fadeOut(2)
         sys.exit()
 
-    def fadeMenuChange(self, menuPath, resetMenu=False):
-        self.display.fadeOut(2)
+    def fadeMenuChange(self, menuPath, resetMenu=False, rate=2):
+        self.display.fadeOut(rate)
         self.changeMenu(menuPath, resetMenu)
         self.currentState.currentMenu.render()
-        self.display.fadeIn(2)
+        self.display.fadeIn(rate)
 
 
 class StateNotFoundException(Exception):
