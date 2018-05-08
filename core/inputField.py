@@ -61,3 +61,6 @@ class InputField(Button):
     def unselected(self):
         self.showPrompt = False
         self.renderInput()
+
+    def getContent(self):
+        return self.inputLabel.text
