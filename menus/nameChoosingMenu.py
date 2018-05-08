@@ -9,8 +9,12 @@ class NameChoosingMenu(Menu):
         super().__init__("nameChoosingMenu", parentState)
         self.addLabel(Label("Enter your name: ", 20, 275))
         self.addButton(InputField(20, 325))
+        self.addButton(LabelButton("Continue", 20, 600, self.nextMenu))
         self.addButton(LabelButton("Back", 20, 650, self.goBack))
 
+    def nextMenu(self):
+        self.getRoot().fadeMenuChange("locationState/mainLocationMenu")
+        
     def goBack(self):
         newMenu = "characterCreationState/raceSelectionMenu"
         self.getRoot().fadeMenuChange(newMenu)

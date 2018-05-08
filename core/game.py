@@ -3,12 +3,14 @@ import sys
 from core.display import Display
 from states.titleMenuState import TitleMenuState
 from states.characterCreationState import CharacterCreationState
+from states.locationState import LocationState
 
 
 class Game:
     def __init__(self):
         self.display = Display(700, 700)
-        self.states = [TitleMenuState(self), CharacterCreationState(self)]
+        self.states = [TitleMenuState(self), CharacterCreationState(self),
+                       LocationState(self)]
         self.currentState = None
         self.changeMenu("characterCreationState/nameChoosingMenu")
         self.running = True
