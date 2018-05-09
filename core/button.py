@@ -1,12 +1,8 @@
-import pygame
+from core.surface import Surface
 
-
-class Button:
+class Button(Surface):
     def __init__(self, image, x, y, func, *funcArgs):
-        self.image = image
-        self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+        super().__init__(image, x, y)
 
         self.hovered = False
         self.click = func

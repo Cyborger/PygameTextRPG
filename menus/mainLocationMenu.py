@@ -12,7 +12,8 @@ class MainLocationMenu(Menu):
         self.addLabel(Surface("res/images/forest.png", 425, 200))
 
     def rest(self):
-        self.getRoot().fadeMenuChange("locationState/mainLocationMenu", rate=1)
+        self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
+                                      fadeRate = 1)
 
     def playerStats(self):
         self.getParent().player.printInfo()

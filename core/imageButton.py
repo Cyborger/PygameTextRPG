@@ -1,5 +1,3 @@
-import pygame
-
 from core.button import Button
 
 class ImageButton(Button):
@@ -13,8 +11,3 @@ class ImageButton(Button):
 
     def unhover(self):
         self.image = self.unhoveredImage
-
-    @classmethod
-    def fromFilePaths(cls, unhoveredImagePath, hoveredImagePath, x, y, func):
-        return cls(pygame.image.load(unhoveredImagePath),
-                   pygame.image.load(hoveredImagePath), x, y, func)

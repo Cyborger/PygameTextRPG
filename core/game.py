@@ -12,30 +12,28 @@ class Game:
         self.states = [TitleMenuState(self), CharacterCreationState(self),
                        LocationState(self)]
         self.currentState = None
+
+    def start(self):
         self.changeMenu("titleMenuState/titleMenu")
-        self.running = True
+        self.loop()
 
     def loop(self):
-        while self.running:
+        while True:
             self.currentState.currentMenu.update()
             self.display.clear()
             self.currentState.currentMenu.render()
             pygame.display.flip()
 
-    def changeMenu(self, menuPath, resetMenu=False):
+    def changeMenu(self, menuPath):
         splitPath = menuPath.split("/")
         self.currentState = self.getState(splitPath[0])
         self.currentState.changeMenu(splitPath[1])
-        if resetMenu:
-            self.currentState.resetCurrentMenu()
-        self.currentState.currentMenu.updateButtonFocus()
 
     def getState(self, stateName):
         for state in self.states:
             if state.name == stateName:
                 return state
-        else:
-            raise StateNotFoundException(stateName)
+        raise StateNotFoundException(stateName)
 
     def getMenu(self, menuPath):
         """ menuPath is in the form of stateName/menuName """
@@ -46,11 +44,11 @@ class Game:
         self.display.fadeOut(2)
         sys.exit()
 
-    def fadeMenuChange(self, menuPath, resetMenu=False, rate=2):
-        self.display.fadeOut(rate)
-        self.changeMenu(menuPath, resetMenu)
+    def fadeMenuChange(self, menuPath, fadeRate=2):
+        self.display.fadeOut(fadeRate)
+        self.changeMenu(menuPath)
         self.currentState.currentMenu.render()
-        self.display.fadeIn(rate)
+        self.display.fadeIn(fadeRate)
 
 
 class StateNotFoundException(Exception):

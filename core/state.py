@@ -12,11 +12,11 @@ class State:
         for menu in self.menus:
             if menu.name == menuName:
                 return menu
-        else:
-            raise MenuNotFoundException(menuName)
+        raise MenuNotFoundException(menuName)
 
     def changeMenu(self, menuName):
         self.currentMenu = self.getMenu(menuName)
+        self.currentMenu.updateButtonFocus()
 
     def getRoot(self):
         return self.game

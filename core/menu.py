@@ -2,6 +2,8 @@ import pygame
 from core.inputField import InputField
 
 
+#TODO: I FEEL LIKE THIS SHOULDN'T BE SO MESSY
+
 class Menu:
     def __init__(self, name, parentState):
         self.name = name
@@ -24,11 +26,7 @@ class Menu:
             if event.type == pygame.QUIT:
                 self.getRoot().exit()
         self.handleMouseEvents(events)
-        if self.currentTextField is None:
-            self.handleButtonNavigationEvents(events)
-        else:
-            self.handleInputEnteringEvents(events)
-
+        self.handleKeyDownEvents(events)
 
     def draw(self, surface, position=(0, 0)):
         self.getRoot().display.draw(surface, position)
@@ -39,32 +37,36 @@ class Menu:
     def addLabel(self, label):
         self.labels.append(label)
 
-    def handleButtonNavigationEvents(self, events):
+    def handleKeyDownEvents(self, events):
         for event in events:
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_w or event.key == pygame.K_UP:
-                    self.buttonSelection = max(self.buttonSelection - 1, 0)
-                    self.updateButtonFocus()
-                elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
-                    self.buttonSelection = min(self.buttonSelection + 1,
-                                               len(self.buttons) - 1)
-                    self.updateButtonFocus()
-                elif event.key == pygame.K_RETURN:
-                    selectedButton = self.buttons[self.buttonSelection]
-                    selectedButton.checkForClick()
-                    if isinstance(selectedButton, InputField):
-                        self.currentTextField = selectedButton
-
-    def handleInputEnteringEvents(self, events):
-        for event in events:
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
-                    self.currentTextField.unselected()
-                    self.currentTextField = None
-                elif event.key == pygame.K_BACKSPACE:
-                    self.currentTextField.backspace()
+                if self.currentTextField is None:
+                    self.handleButtonNavigationEvent(event)
                 else:
-                    self.currentTextField.addInput(event.unicode)
+                    self.handleInputEnteringEvent(event)
+
+    def handleButtonNavigationEvent(self, event):
+        if event.key == pygame.K_w or event.key == pygame.K_UP:
+            self.buttonSelection = max(self.buttonSelection - 1, 0)
+            self.updateButtonFocus()
+        elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+            self.buttonSelection = min(self.buttonSelection + 1,
+                                       len(self.buttons) - 1)
+            self.updateButtonFocus()
+        elif event.key == pygame.K_RETURN:
+            selectedButton = self.buttons[self.buttonSelection]
+            selectedButton.checkForClick()
+            if isinstance(selectedButton, InputField):
+                self.currentTextField = selectedButton
+
+    def handleInputEnteringEvent(self, event):
+        if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
+            self.currentTextField.unselected()
+            self.currentTextField = None
+        elif event.key == pygame.K_BACKSPACE:
+            self.currentTextField.backspace()
+        else:
+            self.currentTextField.addInput(event.unicode)
 
     def handleMouseEvents(self, events):
         for event in events:

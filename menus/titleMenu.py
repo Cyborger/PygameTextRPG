@@ -11,7 +11,7 @@ class TitleMenu(Menu):
 
     def newGame(self):
         newMenu = "characterCreationState/allocateStatsMenu"
-        self.getRoot().fadeMenuChange(newMenu, resetMenu=True)
+        self.getRoot().fadeMenuChange(newMenu)
 
     def exit(self):
         self.getRoot().exit()

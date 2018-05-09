@@ -1,15 +1,14 @@
 import pygame
+from core.surface import Surface
 
 
-class Label:
+class Label(Surface):
     def __init__(self, text, x, y, fontSize=24):
         self.text = text
         self.font = pygame.font.Font("res/fonts/PressStart2P-Regular.ttf",
                                      fontSize)
-        self.image = self.font.render(self.text, True, (200, 200, 200))
-        self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+        image = self.font.render(self.text, True, (200, 200, 200))
+        super().__init__(image, x, y)
 
     def updateImage(self):
         self.image = self.font.render(self.text, True, (200, 200, 200))
