@@ -1,18 +1,25 @@
 import json
-
+from core.race import Race
 
 class JSONLoader:
+    @classmethod
     def getData(cls, fileName):
-        filePath = "json/" + fileName
-        with open(fileName) as dataFile:
+        filePath = "json/" + fileName + ".json"
+        with open(filePath) as dataFile:
             return json.load(dataFile)
 
+    @classmethod
     def loadJSONFile(cls, fileName):
         objectList = []
-        objectData = getData(fileName)
+        objectData = cls.getData(fileName)
         for obj in objectData:
             objectList.append(objectData[obj])
         return objectList
 
+    @classmethod
     def loadRaces(cls):
-        for race in loadJSONFile("race"):
+        raceList = []
+        for race in cls.loadJSONFile("races"):
+            newRace = Race(race)
+            raceList.append(newRace)
+        return raceList

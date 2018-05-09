@@ -1,0 +1,16 @@
+{
+  "Human": {
+    "Name" : "Human",
+    "StatBonuses" : {
+      "Strength" : 2,
+      "Intelligence" : -2
+    }
+  },
+  "Elf" : {
+    "Name" : "Elf",
+    "StatBonuses" : {
+      "Intelligence" : 2,
+      "Strength" : -2
+    }
+  }
+}

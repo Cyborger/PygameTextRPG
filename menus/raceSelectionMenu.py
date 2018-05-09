@@ -1,3 +1,4 @@
+from core.jsonLoader import JSONLoader
 from core.menu import Menu
 from core.label import Label
 from core.labelButton import LabelButton
@@ -6,7 +7,7 @@ from core.labelButton import LabelButton
 class RaceSelectionMenu(Menu):
     def __init__(self, parentState):
         super().__init__("raceSelectionMenu", parentState)
-        self.races = ["Human", "Elf", "Dwarf", "Orc", "Halfling", "Ratfolk"]
+        self.races = JSONLoader.loadRaces()
         self.createLabels()
         self.createButtons()
 
@@ -18,12 +19,15 @@ class RaceSelectionMenu(Menu):
         y = 70
         ySpacing = 60
         for race in self.races:
-            self.addButton(LabelButton(race, x, y, self.chooseRace, race))
+            label = race.name + "   " + race.getBonusesLabel()
+            self.addButton(LabelButton(label, x, y, self.chooseRace, race))
             y += ySpacing
         self.addButton(LabelButton("Back", 20, 650, self.goBack))
 
-    def chooseRace(self, raceName):
-        self.getParent().newPlayer.race = raceName
+    def chooseRace(self, race):
+        self.getParent().newPlayer.race = race
+        for stat in race.bonuses:
+            self.getParent().newPlayer.stats[stat] += race.bonuses[stat]
         self.getRoot().fadeMenuChange("characterCreationState/nameChoosingMenu")
 
     def goBack(self):

@@ -10,6 +10,6 @@ class Player:
 
     def printInfo(self):
         print("Name: " + self.name)
-        print("Race: " + self.race)
+        print("Race: " + self.race.name)
         for stat in self.stats:
             print(stat + ": " + str(self.stats[stat]))
