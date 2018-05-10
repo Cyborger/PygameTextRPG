@@ -19,15 +19,12 @@ class RaceSelectionMenu(Menu):
         y = 70
         ySpacing = 60
         for race in self.races:
-            label = race.name + "   " + race.getBonusesLabel()
-            self.addButton(LabelButton(label, x, y, self.chooseRace, race))
+            self.addButton(LabelButton(race.name, x, y, self.chooseRace, race))
             y += ySpacing
         self.addButton(LabelButton("Back", 20, 650, self.goBack))
 
     def chooseRace(self, race):
         self.getParent().newPlayer.race = race
-        for stat in race.bonuses:
-            self.getParent().newPlayer.stats[stat] += race.bonuses[stat]
         self.getRoot().fadeMenuChange("characterCreationState/nameChoosingMenu")
 
     def goBack(self):
