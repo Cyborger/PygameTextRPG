@@ -10,6 +10,7 @@ class Menu:
         self.parentState = parentState
         self.buttons = []
         self.labels = []
+        self.surfaces = []
         self.currentTextField = None
         self.buttonSelection = 0
 
@@ -17,7 +18,7 @@ class Menu:
         self.handleEvents()
 
     def render(self):
-        for guiElement in self.buttons + self.labels:
+        for guiElement in self.buttons + self.labels + self.surfaces:
             self.draw(guiElement.image, guiElement.rect)
 
     def handleEvents(self):
@@ -36,6 +37,9 @@ class Menu:
 
     def addLabel(self, label):
         self.labels.append(label)
+
+    def addSurface(self, surface):
+        self.surfaces.append(surface)
 
     def handleKeyDownEvents(self, events):
         for event in events:

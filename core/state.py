@@ -5,8 +5,9 @@ class State:
         self.menus = []
         self.currentMenu = None
 
-    def addMenu(self, menu):
-        self.menus.append(menu)
+    def addMenus(self, *menus):
+        for menu in menus:
+            self.menus.append(menu)
 
     def getMenu(self, menuName):
         for menu in self.menus:

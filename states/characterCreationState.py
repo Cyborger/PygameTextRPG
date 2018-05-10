@@ -8,6 +8,5 @@ class CharacterCreationState(State):
     def __init__(self, game):
         super().__init__("characterCreationState", game)
         self.newPlayer = Player()
-        self.addMenu(AllocateStatsMenu(self))
-        self.addMenu(RaceSelectionMenu(self))
-        self.addMenu(NameChoosingMenu(self))
+        self.addMenus(AllocateStatsMenu(self), RaceSelectionMenu(self),
+                      NameChoosingMenu(self))

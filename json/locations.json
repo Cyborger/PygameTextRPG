@@ -1,8 +1,10 @@
 {
   "Camp" : {
-    "Name" : "Camp"
+    "Name" : "Camp",
+    "Type" : "Resting"
   },
   "Forest" : {
-    "Name" : "Forest"
+    "Name" : "Forest",
+    "Type" : "Forest"
   }
 }
