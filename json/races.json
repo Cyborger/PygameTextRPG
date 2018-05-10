@@ -5,7 +5,13 @@
   "Elf" : {
     "Name" : "Elf"
   },
-  "Orc": {
+  "Orc" : {
     "Name" : "Orc"
+  },
+  "Halfing" : {
+    "Name" : "Halfling"
+  },
+  "Dwarf" : {
+    "Name" : "Dwarf"
   }
 }
