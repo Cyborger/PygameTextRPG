@@ -65,7 +65,8 @@ class AllocateStatsMenu(Menu):
         self.generateLabels()
 
     def nextMenu(self):
-        self.getRoot().fadeMenuChange("characterCreationState/raceSelectionMenu")
+        newMenu = "characterCreationState/raceSelectionMenu"
+        self.getRoot().fadeMenuChange(newMenu, fadeRate=3)
 
     def goBack(self):
         self.getRoot().fadeMenuChange("titleMenuState/titleMenu")

@@ -23,4 +23,4 @@ class NameChoosingMenu(Menu):
 
     def goBack(self):
         newMenu = "characterCreationState/raceSelectionMenu"
-        self.getRoot().fadeMenuChange(newMenu)
+        self.getRoot().fadeMenuChange(newMenu, fadeRate=3)

@@ -26,8 +26,9 @@ class RaceSelectionMenu(Menu):
 
     def chooseRace(self, race):
         self.getParent().newPlayer.race = race
-        self.getRoot().fadeMenuChange("characterCreationState/nameChoosingMenu")
+        self.getRoot().fadeMenuChange("characterCreationState/nameChoosingMenu",
+                                      fadeRate=3)
 
     def goBack(self):
         previousMenu = "characterCreationState/allocateStatsMenu"
-        self.getRoot().fadeMenuChange(previousMenu)
+        self.getRoot().fadeMenuChange(previousMenu, fadeRate=3)

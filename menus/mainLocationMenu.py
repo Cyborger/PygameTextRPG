@@ -16,7 +16,7 @@ class MainLocationMenu(Menu):
         self.addSurface(Surface(self.getParent().currentLocation.image, 425, 200))
 
     def goToTravelMenu(self):
-        self.getRoot().changeMenu("locationState/travelMenu")
+        self.getRoot().fadeMenuChange("locationState/travelMenu", fadeRate=4)
 
     def rest(self):
         self.getRoot().fadeMenuChange("locationState/mainLocationMenu",

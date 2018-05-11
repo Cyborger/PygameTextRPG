@@ -17,7 +17,7 @@ class State:
 
     def changeMenu(self, menuName):
         self.currentMenu = self.getMenu(menuName)
-        self.currentMenu.updateButtonFocus()
+        self.currentMenu.navigationHandler.updateButtonFocus()
 
     def getRoot(self):
         return self.game
