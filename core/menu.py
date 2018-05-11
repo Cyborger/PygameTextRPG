@@ -11,6 +11,9 @@ class Menu:
         self.labels = []
         self.surfaces = []
 
+    def isNowCurrentMenu(self):
+        pass
+
     def update(self):
         self.handleEvents()
 

@@ -17,6 +17,7 @@ class State:
 
     def changeMenu(self, menuName):
         self.currentMenu = self.getMenu(menuName)
+        self.currentMenu.isNowCurrentMenu()
         self.currentMenu.navigationHandler.updateButtonFocus()
 
     def getRoot(self):

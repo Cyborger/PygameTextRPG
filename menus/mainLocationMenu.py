@@ -9,11 +9,11 @@ class MainLocationMenu(Menu):
         self.addButton(LabelButton("Travel", 20, 300, self.goToTravelMenu))
         self.addButton(LabelButton("Rest", 20, 350, self.rest))
         self.addButton(LabelButton("Player Stats", 20, 400, self.playerStats))
-        self.updateSurfaces()
 
-    def updateSurfaces(self):
+    def isNowCurrentMenu(self):
         self.surfaces[:] = []
-        self.addSurface(Surface(self.getParent().currentLocation.image, 425, 200))
+        currentLocationImage = self.getParent().currentLocation.image
+        self.addSurface(Surface(currentLocationImage, 425, 200))
 
     def goToTravelMenu(self):
         self.getRoot().fadeMenuChange("locationState/travelMenu", fadeRate=4)
@@ -23,7 +23,8 @@ class MainLocationMenu(Menu):
                                       fadeRate = 1)
 
     def playerStats(self):
-        self.getParent().player.printInfo()
+        self.getRoot().fadeMenuChange("locationState/playerInfoMenu",
+                                      fadeRate=3)
 
     def placeholder(self):
         pass

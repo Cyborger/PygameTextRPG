@@ -4,6 +4,7 @@ from core.state import State
 from core.player import Player
 from menus.mainLocationMenu import MainLocationMenu
 from menus.travelMenu import TravelMenu
+from menus.playerInfoMenu import PlayerInfoMenu
 
 
 class LocationState(State):
@@ -12,4 +13,5 @@ class LocationState(State):
         self.locations = JSONLoader.loadJSONFile("locations", Location)
         self.currentLocation = self.locations[0]
         self.player = Player()  # Default player, if skipping character creation
-        self.addMenus(MainLocationMenu(self), TravelMenu(self))
+        self.addMenus(MainLocationMenu(self), TravelMenu(self),
+                      PlayerInfoMenu(self))

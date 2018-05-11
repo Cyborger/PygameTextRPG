@@ -7,6 +7,9 @@ class TravelMenu(Menu):
         super().__init__("travelMenu", parentState)
         self.updateButtons()
 
+    def isNowCurrentMenu(self):
+        self.updateButtons()
+        
     def updateButtons(self):
         self.buttons[:] = []
         y = 50
@@ -19,10 +22,8 @@ class TravelMenu(Menu):
 
     def travel(self, location):
         self.getParent().currentLocation = location
-        self.getRoot().getMenu("locationState/mainLocationMenu").updateSurfaces()
         self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
                                       fadeRate=1)
-        self.updateButtons()
 
     def goBack(self):
         self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
