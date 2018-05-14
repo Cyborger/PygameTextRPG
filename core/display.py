@@ -17,26 +17,36 @@ class Display:
         self.display.fill(color)
 
     def fadeIn(self, fadeRate):
-        fadingSurface = pygame.Surface((self.width, self.height))
-        currentDisplay = self.display.copy()
-        timeBetween = (fadeRate / 1000.0) / 255.0
-        for i in range(255, 0, int(-fadeRate)):
-            fadingSurface.set_alpha(i)
-            self.display.blit(currentDisplay, (0, 0))
-            self.display.blit(fadingSurface, (0, 0))
-            pygame.display.flip()
-            pygame.time.wait(int(timeBetween))
+        self._fade(255.0, 0.0, -fadeRate)
 
     def fadeOut(self, fadeRate):
+        self._fade(0.0, 255.0, fadeRate)
+
+    def _fade(self, startAlpha, endAlpha, fadeRate):
         fadingSurface = pygame.Surface((self.width, self.height))
         currentDisplay = self.display.copy()
-        timeBetween = (fadeRate / 1000.0) / 255.0
-        for i in range(0, 255, int(fadeRate)):
-            fadingSurface.set_alpha(i)
+        timeBetween = (abs(fadeRate) / 1000.0) / 255.0
+        for i in self._getFadeIncrements(startAlpha, endAlpha, fadeRate):
+            lastTime = pygame.time.get_ticks()
+            fadingSurface.set_alpha(int(i))
             self.draw(currentDisplay)
             self.draw(fadingSurface)
             pygame.display.flip()
-            pygame.time.wait(int(timeBetween))
+            timeToRender = pygame.time.get_ticks() - lastTime
+            pygame.time.delay(int(timeBetween - timeToRender))
+
+    def _getFadeIncrements(self, start, finish, increment):
+        values = []
+        current = start
+        if start > finish:
+            while current > finish:
+                values.append(current)
+                current += increment
+        elif start < finish:
+            while current < finish:
+                values.append(current)
+                current += increment
+        return values
 
     def draw(self, image, position = (0, 0)):
         self.display.blit(image, position)

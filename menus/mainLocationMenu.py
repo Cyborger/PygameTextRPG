@@ -24,7 +24,7 @@ class MainLocationMenu(Menu):
 
     def playerStats(self):
         self.getRoot().fadeMenuChange("locationState/playerInfoMenu",
-                                      fadeRate=3)
+                                      fadeRate=4)
 
     def placeholder(self):
         pass
