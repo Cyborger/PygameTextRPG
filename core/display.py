@@ -19,20 +19,24 @@ class Display:
     def fadeIn(self, fadeRate):
         fadingSurface = pygame.Surface((self.width, self.height))
         currentDisplay = self.display.copy()
-        for i in range(255, 0, -fadeRate):
+        timeBetween = (fadeRate / 1000.0) / 255.0
+        for i in range(255, 0, int(-fadeRate)):
             fadingSurface.set_alpha(i)
             self.display.blit(currentDisplay, (0, 0))
             self.display.blit(fadingSurface, (0, 0))
             pygame.display.flip()
+            pygame.time.wait(int(timeBetween))
 
     def fadeOut(self, fadeRate):
         fadingSurface = pygame.Surface((self.width, self.height))
         currentDisplay = self.display.copy()
-        for i in range(0, 255, fadeRate):
+        timeBetween = (fadeRate / 1000.0) / 255.0
+        for i in range(0, 255, int(fadeRate)):
             fadingSurface.set_alpha(i)
             self.draw(currentDisplay)
             self.draw(fadingSurface)
             pygame.display.flip()
+            pygame.time.wait(int(timeBetween))
 
     def draw(self, image, position = (0, 0)):
         self.display.blit(image, position)

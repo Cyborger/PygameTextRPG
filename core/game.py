@@ -44,7 +44,7 @@ class Game:
         self.display.fadeOut(2)
         sys.exit()
 
-    def fadeMenuChange(self, menuPath, fadeRate=2):
+    def fadeMenuChange(self, menuPath, fadeRate=2.0):
         self.display.fadeOut(fadeRate)
         self.changeMenu(menuPath)
         self.currentState.currentMenu.render()

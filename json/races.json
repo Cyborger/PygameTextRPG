@@ -1,17 +1,20 @@
 {
-  "Human": {
-    "Name" : "Human"
+  "Shrewman" : {
+    "Name" : "Shrewman",
+    "Description" : "Shrewman are a quiet race of scavangers that have
+    descended from mice. At an average of 3ft tall, they spend most of their
+    time hiding from predators in caves or in sewers."
   },
-  "Elf" : {
-    "Name" : "Elf"
+  "Ghostkin" : {
+    "Name" : "Ghostkin",
+    "Description" : "The ghosts of those who left this world with unfinished
+    business. They are tricksters who wish to cause mischief and chaos for
+    those that still live."
   },
-  "Orc" : {
-    "Name" : "Orc"
-  },
-  "Halfing" : {
-    "Name" : "Halfling"
-  },
-  "Dwarf" : {
-    "Name" : "Dwarf"
+  "Sproutsoul" : {
+    "Name" : "Sproutsoul",
+    "Description" : "When a forest is in peril, sproutsouls arise from the
+    ground to defend against hostile intruders."
   }
+
 }
