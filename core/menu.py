@@ -35,6 +35,7 @@ class Menu:
     def addButtons(self, *buttons):
         for button in buttons:
             self.buttons.append(button)
+        self.navigationHandler.updateButtonFocus()
 
     def addLabels(self, *labels):
         for label in labels:

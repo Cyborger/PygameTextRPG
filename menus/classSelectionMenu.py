@@ -24,7 +24,7 @@ class ClassSelectionMenu(Menu):
 
     def chooseClass(self, playerClass):
         self.getParent().newPlayer.playerClass = playerClass
-        self.getRoot().fadeMenuChange("characterCreationState/nameChoosingMenu",
+        self.getRoot().fadeMenuChange("characterCreationState/classConfirmationMenu",
                                       fadeRate=3)
     def goBack(self):
         previousMenu = "characterCreationState/raceSelectionMenu"
