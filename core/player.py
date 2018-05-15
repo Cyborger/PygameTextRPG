@@ -1,7 +1,7 @@
 class Player:
     def __init__(self):
         self.name = ""
-        self.class = None
+        self.playerClass = None
         self.race = None
         self.currentHealth = 10
         self.maxHealth = 20

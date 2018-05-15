@@ -40,7 +40,7 @@ class Menu:
         for label in labels:
             self.labels.append(label)
 
-    def addSurface(self, *surfaces):
+    def addSurfaces(self, *surfaces):
         for surface in surfaces:
             self.surfaces.append(surface)
 

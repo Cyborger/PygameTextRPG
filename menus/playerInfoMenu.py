@@ -11,25 +11,14 @@ class PlayerInfoMenu(Menu):
         player = self.getParent().player
         self.labels[:] = []
         self.buttons[:] = []
-        self.addLabel(Label("Name: " + player.name, 20, 50))
-        self.addLabel(Label("Race: " + player.race.name, 20, 100))
-        self.addLabel(Label("Health: " + str(player.currentHealth) + " / "
-                            + str(player.maxHealth), 20, 150))
-        self.addLabel(Label("Mana: " + str(player.currentMana) + " / "
-                            + str(player.maxMana), 20, 200))
-        y = 270
-        spacing = 60
-        statX = 20
-        valueX = 350
-        for stat in self.getParent().player.stats:
-            self.addLabel(Label(stat, statX, y))
-            value = player.stats[stat]
-            stringValue = str(value)
-            if value < 10:
-                stringValue = "0" + stringValue
-            self.addLabel(Label(stringValue, valueX, y))
-            y += spacing
-        self.addButton(LabelButton("Back", 10, y, self.goBack))
+        self.addLabels(Label("Name: " + player.name, 20, 50),
+                       Label("Class: " + player.playerClass.name, 20, 100),
+                       Label("Race: " + player.race.name, 20, 150),
+                       Label("Health: " + str(player.currentHealth) + " / "
+                            + str(player.maxHealth), 20, 200),
+                       Label("Mana: " + str(player.currentMana) + " / "
+                            + str(player.maxMana), 20, 250))
+        self.addButtons(LabelButton("Back", 10, 650, self.goBack))
 
     def goBack(self):
         self.getRoot().fadeMenuChange("locationState/mainLocationMenu",

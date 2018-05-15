@@ -15,10 +15,10 @@ class TravelMenu(Menu):
         y = 50
         for location in self.getParent().locations:
             if self.getParent().currentLocation is not location:
-                self.addButton(LabelButton(location.name, 20, y, self.travel,
+                self.addButtons(LabelButton(location.name, 20, y, self.travel,
                                            location))
                 y += 60
-        self.addButton(LabelButton("Back", 10, y, self.goBack))
+        self.addButtons(LabelButton("Back", 10, y, self.goBack))
 
     def travel(self, location):
         self.getParent().currentLocation = location

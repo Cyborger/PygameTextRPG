@@ -1,8 +1,7 @@
 {
   "Runeforged" : {
     "Name" : "Runeforged",
-    "Description" : "In an attempt to gain an advantage during the war, experiments using dark forms of magic were done. Test subjects that were exposed to this form of magic became fused with, being granted powerful
-    sorcery. They harness this energy to cast powerful runes to destory those that stand in their way."
+    "Description" : "In an attempt to gain an advantage during the war, experiments using dark forms of magic were done. Test subjects that were exposed to this form of magic became fused with, being granted powerful sorcery. They harness this energy to cast powerful runes to destory those that stand in their way."
   },
   "Assassain" : {
     "Name" : "Assassain",
@@ -12,5 +11,12 @@
     "Name" : "Bloodrager",
     "Description" : "Transformed by the carnage of war, bloodragers fuel themselves with the adreneline from battle and the blood of those fallen before them. Most men that encounter bloodragers on the battlefield run away, knowing they stand no chance against their great strength and expert wielding of the weapons they carry. "
   },
-
+  "Vanguard" : {
+    "Name" : "Vanguard",
+    "Description" : ""
+  },
+  "Sharpshooter" : {
+    "Name" : "Sharpshooter",
+    "Description" : ""
+  }
 }

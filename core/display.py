@@ -38,9 +38,6 @@ class Display:
             self.draw(fadingSurface)
             pygame.display.flip()
             timeToRender = pygame.time.get_ticks() - lastTime
-            print("Minimum delay:  " + str(minDelay))
-            print("Time took to render: " + str(timeToRender))
-            print("Wait time: " + str(minDelay - timeToRender))
             pygame.time.wait(int(minDelay - timeToRender))
 
     def _getFadeIncrements(self, start, finish, increment):
