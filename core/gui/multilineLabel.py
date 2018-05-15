@@ -13,7 +13,6 @@ class MultilineLabel(Surface):
     def renderImage(self):
         lineWidth = self.font.size(" " * self.maxLength)[0]
         lineHeight = self.font.size(" ")[1]
-        print("Line height")
         lines = self.getLines(self.text)
         imageHeight =  lineHeight * len(lines)
         image = pygame.Surface((lineWidth, imageHeight))
@@ -27,14 +26,14 @@ class MultilineLabel(Surface):
 
     def getLines(self, text):
         lines = []
-        position = 0
         lastSpace = 0
         for i in range(len(text)):
             if i > self.maxLength:
                 lines.append(text[0:lastSpace])
-                remainingText = text[lastSpace:]
+                remainingText = text[lastSpace+1:]
                 if len(remainingText) > 0:
                     lines.extend(self.getLines(remainingText))
+                return lines
             if text[i] == " ":
                 lastSpace = i
         lines.append(text)

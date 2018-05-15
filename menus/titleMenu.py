@@ -10,7 +10,6 @@ class TitleMenu(Menu):
         self.addButtons(LabelButton("Begin A New Adventure", 25, 300,
                                    self.newGame),
                         LabelButton("Exit Game", 25, 350, self.exit))
-        self.addLabels(MultilineLabel("Something Something Something Something Something Something Something Something", 25, 400))
 
     def newGame(self):
         newMenu = "characterCreationState/raceSelectionMenu"
