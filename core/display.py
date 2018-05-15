@@ -1,6 +1,8 @@
 import pygame
 
 
+# TODO: Make fading rate universal across computers of different speeds
+
 class Display:
     def __init__(self, width, height):
         self.width = width
@@ -12,6 +14,9 @@ class Display:
         pygame.display.set_icon(pygame.image.load("res/images/icon.png"))
         pygame.display.set_caption("RPG")
         self.display = pygame.display.set_mode((self.width, self.height))
+
+    def draw(self, image, position = (0, 0)):
+        self.display.blit(image, position)
 
     def clear(self, color = (0, 0, 0)):
         self.display.fill(color)
@@ -25,7 +30,7 @@ class Display:
     def _fade(self, startAlpha, endAlpha, fadeRate):
         fadingSurface = pygame.Surface((self.width, self.height))
         currentDisplay = self.display.copy()
-        timeBetween = (abs(fadeRate) / 1000.0) / 255.0
+        minDelay = (255 / abs(fadeRate)) / 1000
         for i in self._getFadeIncrements(startAlpha, endAlpha, fadeRate):
             lastTime = pygame.time.get_ticks()
             fadingSurface.set_alpha(int(i))
@@ -33,7 +38,10 @@ class Display:
             self.draw(fadingSurface)
             pygame.display.flip()
             timeToRender = pygame.time.get_ticks() - lastTime
-            pygame.time.delay(int(timeBetween - timeToRender))
+            print("Minimum delay:  " + str(minDelay))
+            print("Time took to render: " + str(timeToRender))
+            print("Wait time: " + str(minDelay - timeToRender))
+            pygame.time.wait(int(minDelay - timeToRender))
 
     def _getFadeIncrements(self, start, finish, increment):
         values = []
@@ -47,6 +55,3 @@ class Display:
                 values.append(current)
                 current += increment
         return values
-
-    def draw(self, image, position = (0, 0)):
-        self.display.blit(image, position)

@@ -1,9 +1,9 @@
-from core.surface import Surface
+from core.gui.surface import Surface
+
 
 class Button(Surface):
     def __init__(self, image, x, y, func, *funcArgs):
         super().__init__(image, x, y)
-
         self.hovered = False
         self.click = func
         self.funcArgs = funcArgs

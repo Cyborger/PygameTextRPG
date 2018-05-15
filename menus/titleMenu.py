@@ -1,6 +1,7 @@
 from core.menu import Menu
-from core.labelButton import LabelButton
-from core.label import Label
+from core.gui.labelButton import LabelButton
+from core.gui.label import Label
+
 
 class TitleMenu(Menu):
     def __init__(self, parentState):
@@ -14,4 +15,4 @@ class TitleMenu(Menu):
         self.getRoot().fadeMenuChange(newMenu, fadeRate=1)
 
     def exit(self):
-        self.getRoot().exit()
+        self.getRoot().running = False

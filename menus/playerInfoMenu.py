@@ -1,6 +1,7 @@
 from core.menu import Menu
-from core.label import Label
-from core.labelButton import LabelButton
+from core.gui.label import Label
+from core.gui.labelButton import LabelButton
+
 
 class PlayerInfoMenu(Menu):
     def __init__(self, parentState):

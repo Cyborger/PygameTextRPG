@@ -1,5 +1,5 @@
 import pygame
-from core.button import Button
+from core.gui.button import Button
 
 
 class LabelButton(Button):

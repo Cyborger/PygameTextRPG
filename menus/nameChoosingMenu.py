@@ -1,7 +1,7 @@
 from core.menu import Menu
-from core.label import Label
-from core.labelButton import LabelButton
-from core.inputField import InputField
+from core.gui.label import Label
+from core.gui.labelButton import LabelButton
+from core.gui.inputField import InputField
 
 
 class NameChoosingMenu(Menu):

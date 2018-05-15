@@ -1,8 +1,8 @@
 from core.race import Race
 from core.jsonLoader import JSONLoader
 from core.menu import Menu
-from core.label import Label
-from core.labelButton import LabelButton
+from core.gui.label import Label
+from core.gui.labelButton import LabelButton
 
 
 class RaceSelectionMenu(Menu):

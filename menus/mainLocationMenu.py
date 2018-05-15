@@ -1,6 +1,6 @@
 from core.menu import Menu
-from core.labelButton import LabelButton
-from core.surface import Surface
+from core.gui.labelButton import LabelButton
+from core.gui.surface import Surface
 
 
 class MainLocationMenu(Menu):

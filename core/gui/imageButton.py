@@ -1,4 +1,5 @@
-from core.button import Button
+from core.gui.button import Button
+
 
 class ImageButton(Button):
     def __init__(self, unhoveredImage, hoveredImage, x , y, func, *funcArgs):

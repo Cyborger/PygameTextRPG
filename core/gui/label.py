@@ -1,5 +1,5 @@
 import pygame
-from core.surface import Surface
+from core.gui.surface import Surface
 
 
 class Label(Surface):

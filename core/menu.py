@@ -1,6 +1,7 @@
 import pygame
-from core.inputField import InputField
+from core.gui.inputField import InputField
 from core.menuNavigationHandler import MenuNavigationHandler
+
 
 class Menu:
     def __init__(self, name, parentState):
@@ -25,20 +26,23 @@ class Menu:
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
-                self.getRoot().exit()
+                self.getRoot().running = False
         self.navigationHandler.handleNavigationEvents(events)
 
     def draw(self, surface, position=(0, 0)):
         self.getRoot().display.draw(surface, position)
 
-    def addButton(self, button):
-        self.buttons.append(button)
+    def addButtons(self, *buttons):
+        for button in buttons:
+            self.buttons.append(button)
 
-    def addLabel(self, label):
-        self.labels.append(label)
+    def addLabels(self, *labels):
+        for label in labels:
+            self.labels.append(label)
 
-    def addSurface(self, surface):
-        self.surfaces.append(surface)
+    def addSurface(self, *surfaces):
+        for surface in surfaces:
+            self.surfaces.append(surface)
 
     def getRoot(self):
         return self.parentState.getRoot()

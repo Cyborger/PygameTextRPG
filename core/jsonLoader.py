@@ -1,7 +1,9 @@
 import json
 from core.race import Race
 
+
 class JSONLoader:
+    
     @classmethod
     def getJSONData(cls, fileName):
         filePath = "json/" + fileName + ".json"

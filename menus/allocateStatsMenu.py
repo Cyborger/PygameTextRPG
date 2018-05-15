@@ -1,8 +1,8 @@
 import pygame
 from core.menu import Menu
-from core.labelButton import LabelButton
-from core.imageButton import ImageButton
-from core.label import Label
+from core.gui.labelButton import LabelButton
+from core.gui.imageButton import ImageButton
+from core.gui.label import Label
 
 
 class AllocateStatsMenu(Menu):

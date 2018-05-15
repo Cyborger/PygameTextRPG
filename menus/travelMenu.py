@@ -1,5 +1,5 @@
 from core.menu import Menu
-from core.labelButton import LabelButton
+from core.gui.labelButton import LabelButton
 
 
 class TravelMenu(Menu):
@@ -9,7 +9,7 @@ class TravelMenu(Menu):
 
     def isNowCurrentMenu(self):
         self.updateButtons()
-        
+
     def updateButtons(self):
         self.buttons[:] = []
         y = 50

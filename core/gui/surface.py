@@ -19,6 +19,6 @@ class Surface:
 
 class InvalidSurfaceException(Exception):
     def __init__(self, attemptedSurface):
-        super().__init__("Failure to create surface image using %s, please use "
-                         "a valid filepath or "
-                         "a pygame surface" % attemptedSurface)
+        message = ("Failure to create surface image using %s please use a " +
+            "valid filepath or a pygame surface" % attemptedSurface)
+        super().__init__(message)

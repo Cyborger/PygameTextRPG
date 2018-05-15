@@ -1,6 +1,7 @@
 import pygame
-from core.button import Button
-from core.label import Label
+from core.gui.button import Button
+from core.gui.label import Label
+
 
 class InputField(Button):
     def __init__(self, x, y, maxLength=20, fontSize = 24):
@@ -23,14 +24,17 @@ class InputField(Button):
 
     def createBoxImage(self, textLength):
         fieldSize = self.font.size(" " * textLength)
-        backgroundWidth = fieldSize[0] + self.borderWidth * 2 + self.xMargin * 2
-        backgroundHeight = fieldSize[1] + self.borderWidth * 2 + self.yMargin * 2
-        background = pygame.Surface((backgroundWidth, backgroundHeight))
-        background.fill((255, 255, 255))
+        xSpacing = self.borderWidth * 2 + self.xMargin * 2
+        backgroundWidth = fieldSize[0] + xSpacing
+        ySpacing = self.borderWidth * 2 + self.yMargin * 2
+        backgroundHeight = fieldSize[1] + ySpacing
+
+        image = pygame.Surface((backgroundWidth, backgroundHeight))
+        image.fill((255, 255, 255))
         foreground = pygame.Surface((fieldSize[0] + self.xMargin * 2,
                                      fieldSize[1] + self.yMargin * 2))
-        background.blit(foreground, (self.borderWidth, self.borderWidth))
-        return background
+        image.blit(foreground, (self.borderWidth, self.borderWidth))
+        return image
 
     def addInput(self, char):
         if len(self.inputLabel.text) < self.maxLength:
@@ -50,7 +54,8 @@ class InputField(Button):
 
 
     def renderPrompt(self):
-        promptX = self.inputLabel.rect.x + self.font.size(self.inputLabel.text)[0]
+        promptX = (self.inputLabel.rect.x +
+            self.font.size(self.inputLabel.text)[0])
         promptY = self.inputLabel.rect.y
         self.image.blit(self.promptImage, (promptX, promptY))
 

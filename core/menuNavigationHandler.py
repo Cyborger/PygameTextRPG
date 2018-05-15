@@ -1,5 +1,7 @@
 import pygame
-from core.inputField import InputField
+from core.gui.inputField import InputField
+
+
 class MenuNavigationHandler:
     def __init__(self, menu):
         self.menu = menu

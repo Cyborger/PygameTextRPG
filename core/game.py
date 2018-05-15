@@ -1,5 +1,4 @@
 import pygame
-import sys
 from core.display import Display
 from states.titleMenuState import TitleMenuState
 from states.characterCreationState import CharacterCreationState
@@ -12,17 +11,19 @@ class Game:
         self.states = [TitleMenuState(self), CharacterCreationState(self),
                        LocationState(self)]
         self.currentState = None
+        self.running = True
 
     def start(self):
         self.changeMenu("titleMenuState/titleMenu")
         self.loop()
 
     def loop(self):
-        while True:
+        while self.running:
             self.currentState.currentMenu.update()
             self.display.clear()
             self.currentState.currentMenu.render()
             pygame.display.flip()
+        self.exit()
 
     def changeMenu(self, menuPath):
         splitPath = menuPath.split("/")
@@ -30,7 +31,6 @@ class Game:
         self.currentState.changeMenu(splitPath[1])
 
     def fadeMenuChange(self, menuPath, fadeRate=2.0):
-        print(fadeRate)
         self.display.fadeOut(fadeRate)
         self.changeMenu(menuPath)
         self.currentState.currentMenu.render()
@@ -43,13 +43,11 @@ class Game:
         raise StateNotFoundException(stateName)
 
     def getMenu(self, menuPath):
-        """ menuPath is in the form of stateName/menuName """
         splitPath = menuPath.split("/")
         return self.getState(splitPath[0]).getMenu(splitPath[1])
 
     def exit(self):
         self.display.fadeOut(2)
-        sys.exit()
 
 
 class StateNotFoundException(Exception):
