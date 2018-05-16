@@ -30,12 +30,6 @@ class Game:
         self.currentState = self.getState(splitPath[0])
         self.currentState.changeMenu(splitPath[1])
 
-    def fadeMenuChange(self, menuPath, fadeRate=2.0):
-        self.display.fadeOut(fadeRate)
-        self.changeMenu(menuPath)
-        self.currentState.currentMenu.render()
-        self.display.fadeIn(fadeRate)
-
     def getState(self, stateName):
         for state in self.states:
             if state.name == stateName:
@@ -46,8 +40,15 @@ class Game:
         splitPath = menuPath.split("/")
         return self.getState(splitPath[0]).getMenu(splitPath[1])
 
+    def fadeMenuChange(self, menuPath, fadeRate=2.0):
+        self.display.fadeOut(fadeRate)
+        self.changeMenu(menuPath)
+        self.currentState.currentMenu.render()
+        self.display.fadeIn(fadeRate)
+
+
     def exit(self):
-        self.display.fadeOut(2)
+        self.display.fadeIn(2.0)
 
 
 class StateNotFoundException(Exception):

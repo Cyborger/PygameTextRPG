@@ -21,34 +21,34 @@ class Display:
     def clear(self, color = (0, 0, 0)):
         self.display.fill(color)
 
-    def fadeIn(self, fadeRate):
-        self._fade(255.0, 0.0, -fadeRate)
+    def fadeIn(self, interval):
+        self.fade(interval, fadingIn = True)
 
-    def fadeOut(self, fadeRate):
-        self._fade(0.0, 255.0, fadeRate)
+    def fadeOut(self, interval):
+        self.fade(interval, fadingIn = False)
 
-    def _fade(self, startAlpha, endAlpha, fadeRate):
+    # 0 = transparent
+    # 255 = opaque
+    def fade(self, interval, fadingIn = True):
+        """ fadeType is either 'out' or 'in' """
+        intervalMS = interval * 1000.0
+        print("Must take %sms to finish" % intervalMS)
         fadingSurface = pygame.Surface((self.width, self.height))
         currentDisplay = self.display.copy()
-        minDelay = (255 / abs(fadeRate)) / 1000
-        for i in self._getFadeIncrements(startAlpha, endAlpha, fadeRate):
-            lastTime = pygame.time.get_ticks()
-            fadingSurface.set_alpha(int(i))
+        startTime = pygame.time.get_ticks()
+        print("Current time: %s" % startTime )
+        timePassed = 0.0
+        while timePassed < intervalMS:
+            progress = timePassed / intervalMS
+            alpha = int(progress * 255.0)
+            if fadingIn:
+                alpha = 255 - alpha
+            fadingSurface.set_alpha(alpha)
             self.draw(currentDisplay)
             self.draw(fadingSurface)
             pygame.display.flip()
-            timeToRender = pygame.time.get_ticks() - lastTime
-            pygame.time.wait(int(minDelay - timeToRender))
-
-    def _getFadeIncrements(self, start, finish, increment):
-        values = []
-        current = start
-        if start > finish:
-            while current > finish:
-                values.append(current)
-                current += increment
-        elif start < finish:
-            while current < finish:
-                values.append(current)
-                current += increment
-        return values
+            currentTime = pygame.time.get_ticks()
+            timePassed = (currentTime - startTime)
+            print("Current time is: %s" % currentTime)
+            print("Start time is: %s" % startTime)
+            print("So %s have passed" % timePassed)
