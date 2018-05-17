@@ -9,7 +9,7 @@ class RaceSelectionMenu(Menu):
     def __init__(self, parentState):
         super().__init__("raceSelectionMenu", parentState)
         self.races = JSONLoader.loadJSONFile("races", Race)
-        self.addLabels(Label("Choose a race: ", 10, 20, fontSize = 32))
+        self.addLabels(Label("Choose a race: ", 10, 20, fontSize=32))
         self.createButtons()
 
     def createButtons(self):
@@ -23,9 +23,7 @@ class RaceSelectionMenu(Menu):
 
     def chooseRace(self, race):
         self.getParent().newPlayer.race = race
-        nextMenu = "characterCreationState/raceConfirmationMenu"
-        self.getRoot().fadeMenuChange(nextMenu, fadeRate=3)
+        self.getRoot().fadeMenuChange("raceConfirmationMenu", "fast")
 
     def goBack(self):
-        previousMenu = "titleMenuState/titleMenu"
-        self.getRoot().fadeMenuChange(previousMenu, fadeRate=3)
+        self.getRoot().fadeMenuChange("titleMenuState/titleMenu")

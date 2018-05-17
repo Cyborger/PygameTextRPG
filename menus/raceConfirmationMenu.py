@@ -11,13 +11,10 @@ class RaceConfirmationMenu(Menu):
     def isNowCurrentMenu(self):
         self.labels[:] = []
         description = self.getParent().newPlayer.race.description
-        self.addLabels(MultilineLabel(description, 40, 40, maxWidth=600,
-                                     fontSize=24))
+        self.addLabels(MultilineLabel(description, 40, 40, maxWidth=600))
 
     def nextMenu(self):
-        nextMenu = "characterCreationState/classSelectionMenu"
-        self.getRoot().fadeMenuChange(nextMenu, fadeRate=3)
+        self.getRoot().fadeMenuChange("classSelectionMenu")
 
     def goBack(self):
-        previousMenu = "characterCreationState/raceSelectionMenu"
-        self.getRoot().fadeMenuChange(previousMenu, fadeRate=3)
+        self.getRoot().fadeMenuChange("raceSelectionMenu", "fast")

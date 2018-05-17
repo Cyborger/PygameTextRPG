@@ -22,9 +22,7 @@ class TravelMenu(Menu):
 
     def travel(self, location):
         self.getParent().currentLocation = location
-        self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
-                                      fadeRate=1)
+        self.getRoot().fadeMenuChange("mainLocationMenu")
 
     def goBack(self):
-        self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
-                                      fadeRate=4)
+        self.getRoot().fadeMenuChange("mainLocationMenu")

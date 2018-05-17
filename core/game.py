@@ -5,6 +5,8 @@ from states.characterCreationState import CharacterCreationState
 from states.locationState import LocationState
 
 
+#TODO: Consider handling events while fading
+
 class Game:
     def __init__(self):
         self.display = Display(700, 700)
@@ -26,9 +28,12 @@ class Game:
         self.exit()
 
     def changeMenu(self, menuPath):
-        splitPath = menuPath.split("/")
-        self.currentState = self.getState(splitPath[0])
-        self.currentState.changeMenu(splitPath[1])
+        if "/" in menuPath:
+            splitPath = menuPath.split("/")
+            self.currentState = self.getState(splitPath[0])
+            self.currentState.changeMenu(splitPath[1])
+        else:
+            self.currentState.changeMenu(menuPath)
 
     def getState(self, stateName):
         for state in self.states:
@@ -37,18 +42,18 @@ class Game:
         raise StateNotFoundException(stateName)
 
     def getMenu(self, menuPath):
-        splitPath = menuPath.split("/")
+        splitPath = self.splitMenuPath(menuPath)
         return self.getState(splitPath[0]).getMenu(splitPath[1])
 
-    def fadeMenuChange(self, menuPath, fadeRate=2.0):
-        self.display.fadeOut(fadeRate)
+    def fadeMenuChange(self, menuPath, duration="normal"):
+        timeToFade = {"fast" : 0.75, "normal" : 1.5, "slow" : 2.5}[duration]
+        self.display.fadeOut(timeToFade / 2.0)
         self.changeMenu(menuPath)
         self.currentState.currentMenu.render()
-        self.display.fadeIn(fadeRate)
-
+        self.display.fadeIn(timeToFade / 2.0)
 
     def exit(self):
-        self.display.fadeIn(2.0)
+        self.display.fadeOut(1.0)
 
 
 class StateNotFoundException(Exception):

@@ -16,15 +16,13 @@ class MainLocationMenu(Menu):
         self.addSurfaces(Surface(currentLocationImage, 425, 200))
 
     def goToTravelMenu(self):
-        self.getRoot().fadeMenuChange("locationState/travelMenu", fadeRate=4)
+        self.getRoot().fadeMenuChange("travelMenu", "fast")
 
     def rest(self):
-        self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
-                                      fadeRate = 1)
+        self.getRoot().fadeMenuChange("mainLocationMenu")
 
     def playerStats(self):
-        self.getRoot().fadeMenuChange("locationState/playerInfoMenu",
-                                      fadeRate=4)
+        self.getRoot().fadeMenuChange("playerInfoMenu", "fast")
 
     def placeholder(self):
         pass

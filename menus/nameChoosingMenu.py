@@ -19,8 +19,7 @@ class NameChoosingMenu(Menu):
             newPlayer.name = self.nameInputField.getContent()
             self.getRoot().getState("locationState").player = newPlayer
             self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
-                                          fadeRate = 1)
+                                          "slow")
 
     def goBack(self):
-        newMenu = "characterCreationState/classSelectionMenu"
-        self.getRoot().fadeMenuChange(newMenu, fadeRate=3)
+        self.getRoot().fadeMenuChange("classSelectionMenu")

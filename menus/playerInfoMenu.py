@@ -21,5 +21,4 @@ class PlayerInfoMenu(Menu):
         self.addButtons(LabelButton("Back", 10, 650, self.goBack))
 
     def goBack(self):
-        self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
-                                      fadeRate=4)
+        self.getRoot().fadeMenuChange("mainLocationMenu", "fast")

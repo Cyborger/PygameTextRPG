@@ -1,8 +1,6 @@
 import pygame
 
 
-# TODO: Make fading rate universal across computers of different speeds
-
 class Display:
     def __init__(self, width, height):
         self.width = width
@@ -27,28 +25,20 @@ class Display:
     def fadeOut(self, interval):
         self.fade(interval, fadingIn = False)
 
-    # 0 = transparent
-    # 255 = opaque
     def fade(self, interval, fadingIn = True):
-        """ fadeType is either 'out' or 'in' """
-        intervalMS = interval * 1000.0
-        print("Must take %sms to finish" % intervalMS)
         fadingSurface = pygame.Surface((self.width, self.height))
         currentDisplay = self.display.copy()
         startTime = pygame.time.get_ticks()
-        print("Current time: %s" % startTime )
+        intervalMS = interval * 1000.0
         timePassed = 0.0
         while timePassed < intervalMS:
-            progress = timePassed / intervalMS
-            alpha = int(progress * 255.0)
+            alpha = int(255 * timePassed / intervalMS)
             if fadingIn:
-                alpha = 255 - alpha
-            fadingSurface.set_alpha(alpha)
+                fadingSurface.set_alpha(255 - alpha)  # Invert alpha
+            else:
+                fadingSurface.set_alpha(alpha)
             self.draw(currentDisplay)
             self.draw(fadingSurface)
             pygame.display.flip()
-            currentTime = pygame.time.get_ticks()
-            timePassed = (currentTime - startTime)
-            print("Current time is: %s" % currentTime)
-            print("Start time is: %s" % startTime)
-            print("So %s have passed" % timePassed)
+            timePassed = pygame.time.get_ticks() - startTime
+        pygame.event.clear()

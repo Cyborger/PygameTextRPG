@@ -1,3 +1,6 @@
+import pygame
+
+
 class State:
     def __init__(self, name, game):
         self.name = name
@@ -18,6 +21,8 @@ class State:
     def changeMenu(self, menuName):
         self.currentMenu = self.getMenu(menuName)
         self.currentMenu.isNowCurrentMenu()
+        self.currentMenu.navigationHandler.buttonSelection = 0
+        self.currentMenu.navigationHandler.updateButtons(pygame.mouse.get_pos())
         self.currentMenu.navigationHandler.updateButtonFocus()
 
     def getRoot(self):

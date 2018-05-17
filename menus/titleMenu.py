@@ -13,7 +13,7 @@ class TitleMenu(Menu):
 
     def newGame(self):
         newMenu = "characterCreationState/raceSelectionMenu"
-        self.getRoot().fadeMenuChange(newMenu, fadeRate=100.0)
+        self.getRoot().fadeMenuChange(newMenu, "slow")
 
     def exit(self):
         self.getRoot().running = False
