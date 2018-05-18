@@ -1,28 +1,34 @@
+import pygame
 from core.menu import Menu
-from core.gui.labelButton import LabelButton
+from core.gui.imageButton import ImageButton
 
 
 class TravelMenu(Menu):
     def __init__(self, parentState):
         super().__init__("travelMenu", parentState)
-        self.updateButtons()
+        self.createBackground()
+        self.createButtons()
 
-    def isNowCurrentMenu(self):
-        self.updateButtons()
+    def createBackground(self):
+        # Create lines between locations
+        pass
 
-    def updateButtons(self):
-        self.buttons[:] = []
-        y = 50
+    def createButtons(self):
+        # Create all the location buttons and the back button
+        buttonImage = pygame.image.load("res/images/mapButtonDefault.png")
+        buttonImageHovered = pygame.image.load("res/images/" +
+                                                 "mapButtonHovered.png")
+
         for location in self.getParent().locations:
-            if self.getParent().currentLocation is not location:
-                self.addButtons(LabelButton(location.name, 20, y, self.travel,
-                                           location))
-                y += 60
-        self.addButtons(LabelButton("Back", 10, y, self.goBack))
+            x, y = location.mapLocation
+            self.addButtons(ImageButton(buttonImage, buttonImageHovered,
+                                        x, y, self.locationChosen, location))
 
-    def travel(self, location):
-        self.getParent().currentLocation = location
-        self.getRoot().fadeMenuChange("mainLocationMenu")
 
-    def goBack(self):
-        self.getRoot().fadeMenuChange("mainLocationMenu", "fast")
+    def locationChosen(self, location):
+        print("You will travel to: " + location.name)
+
+class MapNavigationHandler:
+    def __init__(self):
+        # Will handle navigating locations buttons and exitting the map
+        pass

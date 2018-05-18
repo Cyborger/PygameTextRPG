@@ -1,10 +1,18 @@
 {
   "Camp" : {
     "Name" : "Camp",
-    "Type" : "Resting"
+    "Type" : "Resting",
+    "MapLocation" : [50, 50],
+    "ConnectedLocations" : {
+      "East" : "Forest"
+    }
   },
   "Forest" : {
     "Name" : "Forest",
-    "Type" : "Forest"
+    "Type" : "Forest",
+    "MapLocation" : [150, 75],
+    "ConnectedLocations" : {
+      "West" : "Camp"
+    }
   }
 }
