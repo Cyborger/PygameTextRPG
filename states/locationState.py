@@ -15,3 +15,13 @@ class LocationState(State):
         self.player = Player()  # Default player, if skipping character creation
         self.addMenus(MainLocationMenu(self), TravelMenu(self),
                       PlayerInfoMenu(self))
+
+    def getLocation(self, locationName):
+        for location in self.locations:
+            if location.name == locationName:
+                return location
+
+
+class LocationNotFoundException(Exception):
+    def __init__(self, locationName):
+        super().__init__("Unable to find location: " + locationName)
