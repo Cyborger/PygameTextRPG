@@ -8,6 +8,11 @@ class MenuNavigationHandler:
         self.buttonSelection = 0
         self.currentTextField = None
 
+    def resetSelection(self):
+        if not isinstance(self.menu.buttons[0], InputField):
+            self.updateButtons(pygame.mouse.get_pos())
+        self.updateButtonFocus()
+
     def handleNavigationEvents(self, events):
         self.handleMouseEvents(events)
         self.handleKeyPressEvents(events)

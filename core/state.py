@@ -21,9 +21,7 @@ class State:
     def changeMenu(self, menuName):
         self.currentMenu = self.getMenu(menuName)
         self.currentMenu.isNowCurrentMenu()
-        self.currentMenu.navigationHandler.buttonSelection = 0
-        self.currentMenu.navigationHandler.updateButtons(pygame.mouse.get_pos())
-        self.currentMenu.navigationHandler.updateButtonFocus()
+        self.currentMenu.navigationHandler.resetSelection()
 
     def getRoot(self):
         return self.game

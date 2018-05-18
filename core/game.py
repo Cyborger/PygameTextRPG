@@ -5,8 +5,6 @@ from states.characterCreationState import CharacterCreationState
 from states.locationState import LocationState
 
 
-#TODO: Consider handling events while fading
-
 class Game:
     def __init__(self):
         self.display = Display(700, 700)
@@ -20,6 +18,7 @@ class Game:
         self.loop()
 
     def loop(self):
+        pygame.event.clear()
         while self.running:
             self.currentState.currentMenu.update()
             self.display.clear()

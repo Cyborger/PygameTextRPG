@@ -20,12 +20,12 @@ class Display:
         self.display.fill(color)
 
     def fadeIn(self, interval):
-        self.fade(interval, fadingIn = True)
+        self.fade(interval, invert=True)
 
     def fadeOut(self, interval):
-        self.fade(interval, fadingIn = False)
+        self.fade(interval, invert=False)
 
-    def fade(self, interval, fadingIn = True):
+    def fade(self, interval, invert=True):
         fadingSurface = pygame.Surface((self.width, self.height))
         currentDisplay = self.display.copy()
         startTime = pygame.time.get_ticks()
@@ -33,7 +33,7 @@ class Display:
         timePassed = 0.0
         while timePassed < intervalMS:
             alpha = int(255 * timePassed / intervalMS)
-            if fadingIn:
+            if invert:
                 fadingSurface.set_alpha(255 - alpha)  # Invert alpha
             else:
                 fadingSurface.set_alpha(alpha)
@@ -41,4 +41,3 @@ class Display:
             self.draw(fadingSurface)
             pygame.display.flip()
             timePassed = pygame.time.get_ticks() - startTime
-        pygame.event.clear()
