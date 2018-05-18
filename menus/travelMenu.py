@@ -25,4 +25,4 @@ class TravelMenu(Menu):
         self.getRoot().fadeMenuChange("mainLocationMenu")
 
     def goBack(self):
-        self.getRoot().fadeMenuChange("mainLocationMenu")
+        self.getRoot().fadeMenuChange("mainLocationMenu", "fast")
