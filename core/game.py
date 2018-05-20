@@ -14,7 +14,7 @@ class Game:
         self.running = True
 
     def start(self):
-        self.changeMenu("titleMenuState/titleMenu")
+        self.changeMenu("locationState/mainLocationMenu")
         self.loop()
 
     def loop(self):
@@ -56,5 +56,5 @@ class Game:
 
 
 class StateNotFoundException(Exception):
-    def __init__(self, name):
-        super().__init__("Unable to find state: " + name)
+    def __init__(self, stateName):
+        super().__init__("Unable to find state: " + stateName)

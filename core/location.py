@@ -13,3 +13,9 @@ class Location:
     def loadImage(self, locationType):
         imagePath = "res/images/" + self.locationImages[locationType] + ".png"
         return pygame.image.load(imagePath)
+
+    def locationIsAdjacent(self, location):
+        for direction in self.connectedLocations:
+            if self.connectedLocations[direction] == location.name:
+                return True
+        return False

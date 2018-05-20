@@ -19,7 +19,8 @@ class MainLocationMenu(Menu):
         self.getRoot().fadeMenuChange("travelMenu", "fast")
 
     def rest(self):
-        self.getRoot().fadeMenuChange("mainLocationMenu")
+        self.getParent().player.rest()
+        self.getRoot().fadeMenuChange("mainLocationMenu", "slow")
 
     def playerStats(self):
         self.getRoot().fadeMenuChange("playerInfoMenu", "fast")

@@ -31,5 +31,5 @@ class State:
 
 
 class MenuNotFoundException(Exception):
-    def __init__(self, name):
-        super().__init__("Unable to find menu: " + name)
+    def __init__(self, menuName):
+        super().__init__("Unable to find menu: " + menuName)

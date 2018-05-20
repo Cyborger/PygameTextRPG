@@ -1,9 +1,17 @@
+from core.race import Race
+from core.playerClass import PlayerClass
+
+
 class Player:
     def __init__(self):
-        self.name = ""
-        self.playerClass = None
-        self.race = None
+        self.name = "Default"
+        self.playerClass = PlayerClass.getDefaultPlayerClass()
+        self.race = Race.getDefaultRace()
         self.currentHealth = 10
         self.maxHealth = 20
         self.currentMana = 10
         self.maxMana = 20
+
+    def rest(self):
+        self.currentHealth = self.maxHealth
+        self.currentMana = self.maxMana
