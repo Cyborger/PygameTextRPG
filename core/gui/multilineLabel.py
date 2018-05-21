@@ -21,6 +21,8 @@ class MultilineLabel(Surface):
             lineImage = self.font.render(line, True, (200, 200, 200))
             image.blit(lineImage, (0, y))
             y += lineHeight
+        image.set_colorkey((0, 0, 0))
+        image = image.subsurface(image.get_bounding_rect())
         return image
 
 

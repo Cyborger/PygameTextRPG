@@ -1,5 +1,6 @@
 import pygame
 from core.display import Display
+from core.message import Message
 from states.titleMenuState import TitleMenuState
 from states.characterCreationState import CharacterCreationState
 from states.locationState import LocationState
@@ -50,6 +51,10 @@ class Game:
         self.changeMenu(menuPath)
         self.currentState.currentMenu.render()
         self.display.fadeIn(timeToFade / 2.0)
+
+    def createMessage(self, messages):
+        newMessage = Message(messages, self.currentState)
+        self.currentState.currentMenu = newMessage
 
     def exit(self):
         self.display.fadeOut(1.0)

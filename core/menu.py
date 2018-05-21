@@ -50,3 +50,6 @@ class Menu:
 
     def getParent(self):
         return self.parentState
+
+    def goBack(self):
+        pass

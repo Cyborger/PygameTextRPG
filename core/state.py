@@ -26,9 +26,6 @@ class State:
     def getRoot(self):
         return self.game
 
-    def resetCurrentMenu(self):
-        self.currentMenu.__init__(self)
-
 
 class MenuNotFoundException(Exception):
     def __init__(self, menuName):

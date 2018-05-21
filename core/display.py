@@ -26,8 +26,8 @@ class Display:
         self.fade(interval, invert=False)
 
     def fade(self, interval, invert=True):
-        fadingSurface = pygame.Surface((self.width, self.height))
         currentDisplay = self.display.copy()
+        fadingSurface = pygame.Surface((self.width, self.height))
         startTime = pygame.time.get_ticks()
         intervalMS = interval * 1000.0
         timePassed = 0.0

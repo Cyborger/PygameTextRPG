@@ -3,6 +3,7 @@ from core.menu import Menu
 from core.gui.surface import Surface
 from core.gui.imageButton import ImageButton
 from core.gui.label import Label
+from core.gui.labelButton import LabelButton
 from core.menuNavigationHandler import MenuNavigationHandler
 
 
@@ -53,7 +54,6 @@ class TravelMenu(Menu):
                 self.addButtons(button)
             elif self.getParent().currentLocation.locationIsAdjacent(location):
                 # Can select because it is adjacent to current
-                print("adjacent location")
                 button = ImageButton(buttonImage, buttonImageHovered, x, y,
                     self.locationChosen, location)
                 self.addButtons(button)
@@ -62,6 +62,7 @@ class TravelMenu(Menu):
                 button = ImageButton(buttonImage, buttonImage, x, y,
                     self.locationChosen, location)
                 self.addButtons(button)
+        self.addButtons(LabelButton("Back", 20, 650, self.goBack))
 
     def createLabels(self):
         self.labels[:] = []
@@ -80,7 +81,11 @@ class TravelMenu(Menu):
         isAdjacent = currentLocation.locationIsAdjacent(location)
         if (location is not currentLocation) and isAdjacent:
             self.getParent().currentLocation = location
-            self.getRoot().fadeMenuChange("mainLocationMenu")
+            self.getRoot().changeMenu("mainLocationMenu")
+            self.getRoot().createMessage(["You have arrived"])
+
+    def goBack(self):
+        self.getRoot().fadeMenuChange("mainLocationMenu")
 
 
 class MapNavigationHandler(MenuNavigationHandler):
@@ -93,9 +98,10 @@ class MapNavigationHandler(MenuNavigationHandler):
         self.updateButtonFocus()
 
     def handleButtonNavigationEvent(self, event):
-        print(self.currentLocation.name)
         if event.key == pygame.K_RETURN:
             self.menu.buttons[self.buttonSelection].checkForClick()
+        elif event.key == pygame.K_ESCAPE:
+            self.menu.goBack()
         elif event.key == pygame.K_w or event.key == pygame.K_UP:
             self.selectLocation("North")
         elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:

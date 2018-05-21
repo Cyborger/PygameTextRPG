@@ -59,6 +59,13 @@ class InputField(Button):
         promptY = self.inputLabel.rect.y
         self.image.blit(self.promptImage, (promptX, promptY))
 
+    def checkForClick(self, menuNavigationHandler):
+        if self.hovered:
+            menuNavigationHandler.currentTextField = self
+            self.selected()
+        else:
+            self.unselected()
+            
     def selected(self):
         self.showPrompt = True
         self.renderInput()
