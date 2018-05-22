@@ -9,7 +9,7 @@ class Display:
         self.initialize()
 
     def initialize(self):
-        pygame.display.set_icon(pygame.image.load("res/images/icon.png"))
+        pygame.display.set_icon(pygame.image.load("res/icon.png"))
         pygame.display.set_caption("RPG")
         self.display = pygame.display.set_mode((self.width, self.height))
 

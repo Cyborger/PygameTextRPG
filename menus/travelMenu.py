@@ -39,11 +39,9 @@ class TravelMenu(Menu):
 
     def createButtons(self):
         self.buttons[:] = []
-        buttonImage = pygame.image.load("res/images/mapButtonDefault.png")
-        buttonImageCurrent = pygame.image.load("res/images/" +
-                                               "mapButtonCurrent.png")
-        buttonImageHovered = pygame.image.load("res/images/" +
-                                               "mapButtonHovered.png")
+        buttonImage = pygame.image.load("res/buttons/mapDefault.png")
+        buttonImageCurrent = pygame.image.load("res/buttons/mapCurrent.png")
+        buttonImageHovered = pygame.image.load("res/buttons/mapHovered.png")
 
         for location in self.getParent().locations:
             x, y = location.mapLocation[0] - 16, location.mapLocation[1] - 16

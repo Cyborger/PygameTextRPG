@@ -15,7 +15,7 @@ class Game:
         self.running = True
 
     def start(self):
-        self.changeMenu("locationState/mainLocationMenu")
+        self.changeMenu("titleMenuState/titleMenu")
         self.loop()
 
     def loop(self):

@@ -1,6 +1,7 @@
 from core.menu import Menu
 from core.gui.multilineLabel import MultilineLabel
 from core.gui.labelButton import LabelButton
+from core.gui.surface import Surface
 
 
 class ClassConfirmationMenu(Menu):
@@ -11,8 +12,14 @@ class ClassConfirmationMenu(Menu):
 
     def isNowCurrentMenu(self):
         self.labels[:] = []
+        self.surfaces[:] = []
         description = self.getParent().newPlayer.playerClass.description
-        self.addLabels(MultilineLabel(description, 40, 40, maxWidth=600))
+        descriptionLabel = MultilineLabel(description, 40, 40, maxWidth=450)
+        self.addLabels(descriptionLabel)
+        image = self.getParent().newPlayer.playerClass.getIcon()
+        surface = Surface(image, 475, 0)
+        surface.rect.centery = descriptionLabel.rect.centery
+        self.addSurfaces(surface)
 
     def nextMenu(self):
         self.getRoot().fadeMenuChange("nameChoosingMenu")
