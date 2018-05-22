@@ -5,42 +5,38 @@ from core.gui.inputField import InputField
 class MenuNavigationHandler:
     def __init__(self, menu):
         self.menu = menu
-        self.buttonSelection = 0
+        self.selectedButton = None
         self.currentTextField = None
 
     def resetSelection(self):
+        self.selectedButton = self.menu.buttons[0]
         if not isinstance(self.menu.buttons[0], InputField):
             self.updateButtons(pygame.mouse.get_pos())
         self.updateButtonFocus()
 
     def handleNavigationEvents(self, events):
-        self.handleMouseEvents(events)
-        self.handleKeyPressEvents(events)
-
-    def handleKeyPressEvents(self, events):
-        for event in events:
-            if event.type == pygame.KEYDOWN:
-                if self.currentTextField is not None:
-                    self.handleTextFieldInputEvent(event)
-                else:
-                    self.handleMenuNavigationEvent(event)
-
-    def handleMouseEvents(self, events):
         for event in events:
             if event.type == pygame.MOUSEMOTION:
                 self.updateButtons(event.pos)
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 self.handleMouseClick()
+            elif event.type == pygame.KEYDOWN:
+                self.handleKeyPressEvents(event)
+
+    def handleKeyPressEvents(self, event):
+        if self.currentTextField is None:
+            self.handleMenuNavigationEvent(event)
+        else:
+            self.handleTextFieldInputEvent(event)
 
     def updateButtons(self, mousePosition):
         for button in self.menu.buttons:
             button.update(mousePosition)
-            if button.isHovering(mousePosition):
-                self.buttonSelection = self.menu.buttons.index(button)
+            if button.hovered:
+                self.selectedButton = button
 
     def handleMouseClick(self):
-        if self.currentTextField is not None:
-            self.currentTextField = None
+        self.currentTextField = None
         for button in self.menu.buttons:
             if isinstance(button, InputField):
                 button.checkForClick(self)
@@ -60,22 +56,24 @@ class MenuNavigationHandler:
         if event.key == pygame.K_ESCAPE:
             self.menu.goBack()
         elif event.key == pygame.K_w or event.key == pygame.K_UP:
-            self.buttonSelection = max(self.buttonSelection - 1, 0)
+            currentIndex = self.menu.buttons.index(self.selectedButton)
+            nextButton = max(currentIndex - 1, 0)
+            self.selectedButton = self.menu.buttons[nextButton]
             self.updateButtonFocus()
         elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
-            self.buttonSelection = min(self.buttonSelection + 1,
-                                       len(self.menu.buttons) - 1)
+            currentIndex = self.menu.buttons.index(self.selectedButton)
+            previousButton = min(currentIndex + 1, len(self.menu.buttons) - 1)
+            self.selectedButton = self.menu.buttons[previousButton]
             self.updateButtonFocus()
         elif event.key == pygame.K_RETURN:
-            selectedButton = self.menu.buttons[self.buttonSelection]
-            selectedButton.checkForClick()
+            self.selectedButton.checkForClick()
 
     def updateButtonFocus(self):
-        for i in range(len(self.menu.buttons)):
-            if i == self.buttonSelection:
-                self.menu.buttons[i].forceHover()
-                if isinstance(self.menu.buttons[i], InputField):
-                    self.currentTextField = self.menu.buttons[i]
-                    self.menu.buttons[i].selected()
+        for button in self.menu.buttons:
+            if button == self.selectedButton:
+                self.selectedButton.forceHover()
+                if isinstance(self.selectedButton, InputField):
+                    self.currentTextField = button
+                    button.selected()
             else:
-                self.menu.buttons[i].forceUnhover()
+                button.forceUnhover()

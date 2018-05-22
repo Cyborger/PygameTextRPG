@@ -82,7 +82,7 @@ class TravelMenu(Menu):
         if (location is not currentLocation) and isAdjacent:
             self.getParent().currentLocation = location
             self.getRoot().changeMenu("mainLocationMenu")
-            self.getRoot().createMessage(["You have arrived"])
+            self.getRoot().createMessage(["You have arrived at " + location.name])
 
     def goBack(self):
         self.getRoot().fadeMenuChange("mainLocationMenu")
@@ -97,9 +97,9 @@ class MapNavigationHandler(MenuNavigationHandler):
         self.locationSelected(self.currentLocation.name)
         self.updateButtonFocus()
 
-    def handleButtonNavigationEvent(self, event):
+    def handleMenuNavigationEvent(self, event):
         if event.key == pygame.K_RETURN:
-            self.menu.buttons[self.buttonSelection].checkForClick()
+            self.selectedButton.checkForClick()
         elif event.key == pygame.K_ESCAPE:
             self.menu.goBack()
         elif event.key == pygame.K_w or event.key == pygame.K_UP:
@@ -121,10 +121,10 @@ class MapNavigationHandler(MenuNavigationHandler):
 
     def locationSelected(self, locationName):
         location = self.menu.getParent().getLocation(locationName)
-        self.buttonSelection = self.getLocationIndex(location)
+        self.selectedButton = self.getLocationButton(location)
         self.updateButtonFocus()
 
-    def getLocationIndex(self, location):
+    def getLocationButton(self, location):
         for button in self.menu.buttons:
             if button.funcArgs[0] == location:
-                return self.menu.buttons.index(button)
+                return button

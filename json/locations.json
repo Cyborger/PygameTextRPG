@@ -1,7 +1,7 @@
 {
   "Camp" : {
     "Name" : "Camp",
-    "Type" : "Resting",
+    "Image" : "campfire",
     "MapLocation" : [50, 350],
     "ConnectedLocations" : {
       "East" : "Forest"
@@ -9,7 +9,7 @@
   },
   "Forest" : {
     "Name" : "Forest",
-    "Type" : "Forest",
+    "Image" : "forest",
     "MapLocation" : [250, 350],
     "ConnectedLocations" : {
       "North" : "Town",
@@ -18,7 +18,7 @@
   },
   "Town" : {
     "Name" : "Town",
-    "Type" : "Resting",
+    "Image" : "campfire",
     "MapLocation" : [250, 250],
     "ConnectedLocations" : {
       "South" : "Forest"
