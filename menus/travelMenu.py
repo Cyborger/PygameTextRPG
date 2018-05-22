@@ -82,7 +82,6 @@ class TravelMenu(Menu):
         if (location is not currentLocation) and isAdjacent:
             self.getParent().currentLocation = location
             self.getRoot().changeMenu("mainLocationMenu")
-            self.getRoot().createMessage(["You have arrived at " + location.name])
 
     def goBack(self):
         self.getRoot().fadeMenuChange("mainLocationMenu")

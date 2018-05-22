@@ -13,15 +13,51 @@
     "MapLocation" : [250, 350],
     "ConnectedLocations" : {
       "North" : "Town",
-      "West" : "Camp"
+      "West" : "Camp",
+      "East" : "Forest Path",
+      "South" : "Meadow"
     }
   },
   "Town" : {
     "Name" : "Town",
     "Image" : "campfire",
-    "MapLocation" : [250, 250],
+    "MapLocation" : [280, 250],
     "ConnectedLocations" : {
+      "North" : "Graveyard",
       "South" : "Forest"
+    }
+  },
+  "Graveyard" : {
+    "Name" : "Graveyard",
+    "Image" : "forest",
+    "MapLocation" : [280, 175],
+    "ConnectedLocations" : {
+      "South" : "Town"
+    }
+  },
+  "ForestPath" : {
+    "Name" : "Forest Path",
+    "Image" : "forest",
+    "MapLocation" : [420, 375],
+    "ConnectedLocations" : {
+      "West" : "Forest",
+      "East" : "Cave"
+    }
+  },
+  "Cave" : {
+    "Name" : "Cave",
+    "Image" : "forest",
+    "MapLocation" : [575, 375],
+    "ConnectedLocations" : {
+      "West" : "Forest Path"
+    }
+  },
+  "Meadow" : {
+    "Name" : "Meadow",
+    "Image" : "forest",
+    "MapLocation" : [325, 450],
+    "ConnectedLocations" : {
+      "North" : "Forest"
     }
   }
 }

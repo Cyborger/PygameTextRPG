@@ -30,7 +30,7 @@ class MultilineLabel(Surface):
         lines = []
         lastSpace = 0
         for i in range(len(text)):
-            if self.font.size(text[:i])[0] > self.maxWidth:
+            if self.font.size(text[:i + 1])[0] > self.maxWidth:
                 lines.append(text[0:lastSpace])
                 remainingText = text[lastSpace+1:]
                 if len(remainingText) > 0:
