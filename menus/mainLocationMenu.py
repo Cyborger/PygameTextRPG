@@ -19,6 +19,7 @@ class MainLocationMenu(Menu):
         self.addButtons(LabelButton("Travel", 20, 300, self.goToTravelMenu))
         self.addButtons(LabelButton("Rest", 20, 350, self.rest))
         self.addButtons(LabelButton("Player Stats", 20, 400, self.playerStats))
+        self.addButtons(LabelButton("Inventory", 20, 450, self.goToInventory))
 
     def goToTravelMenu(self):
         self.getRoot().fadeMenuChange("travelMenu", "fast")
@@ -29,6 +30,9 @@ class MainLocationMenu(Menu):
 
     def playerStats(self):
         self.getRoot().fadeMenuChange("playerInfoMenu", "fast")
+
+    def goToInventory(self):
+        self.getRoot().fadeMenuChange("inventoryMenu", "fast")
 
     def placeholder(self):
         pass

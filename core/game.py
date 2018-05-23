@@ -1,4 +1,6 @@
 import pygame
+from core.jsonLoader import JSONLoader
+from core.item import Item
 from core.display import Display
 from core.message import Message
 from core.player import Player
@@ -15,7 +17,9 @@ class Game:
                        LocationState(self), BattleState(self)]
         self.currentState = None
         self.running = True
+        self.items = JSONLoader.loadJSONFile("items", Item)
         self.player = Player()
+        self.player.inventory.addItem(self.items[0])
 
     def start(self):
         self.changeMenu("locationState/mainLocationMenu")

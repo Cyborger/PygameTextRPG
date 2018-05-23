@@ -6,6 +6,7 @@ from core.player import Player
 from menus.mainLocationMenu import MainLocationMenu
 from menus.travelMenu import TravelMenu
 from menus.playerInfoMenu import PlayerInfoMenu
+from menus.inventoryMenu import InventoryMenu
 
 
 class LocationState(State):
@@ -14,7 +15,8 @@ class LocationState(State):
         self.locations = JSONLoader.loadJSONFile("locations", Location)
         self.currentLocation = self.locations[0]
         self.addMenus(MainLocationMenu(self), TravelMenu(self),
-                      PlayerInfoMenu(self))
+                      PlayerInfoMenu(self),
+                      InventoryMenu(self, "mainLocationMenu"))
 
     def changeLocation(self, location):
         # Figure out if battle or not
