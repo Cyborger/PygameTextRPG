@@ -19,6 +19,7 @@ class State:
         raise MenuNotFoundException(menuName)
 
     def changeMenu(self, menuName):
+        pygame.event.clear()
         self.currentMenu = self.getMenu(menuName)
         self.currentMenu.isNowCurrentMenu()
         self.currentMenu.navigationHandler.resetSelection()

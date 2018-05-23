@@ -16,7 +16,10 @@
       "West" : "Camp",
       "East" : "Forest Path",
       "South" : "Meadow"
-    }
+    },
+    "Enemies" : [
+      "Goblin"
+    ]
   },
   "Town" : {
     "Name" : "Town",

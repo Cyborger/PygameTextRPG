@@ -1,3 +1,4 @@
+from core.inventory import Inventory
 from core.race import Race
 from core.playerClass import PlayerClass
 
@@ -5,6 +6,7 @@ from core.playerClass import PlayerClass
 class Player:
     def __init__(self):
         self.name = "Default"
+        self.inventory = Inventory()
         self.playerClass = PlayerClass.getDefaultPlayerClass()
         self.race = Race.getDefaultRace()
         self.currentHealth = 10

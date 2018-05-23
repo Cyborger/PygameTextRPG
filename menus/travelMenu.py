@@ -78,8 +78,7 @@ class TravelMenu(Menu):
         currentLocation = self.getParent().currentLocation
         isAdjacent = currentLocation.locationIsAdjacent(location)
         if (location is not currentLocation) and isAdjacent:
-            self.getParent().currentLocation = location
-            self.getRoot().changeMenu("mainLocationMenu")
+            self.getParent().changeLocation(location)
 
     def goBack(self):
         self.getRoot().fadeMenuChange("mainLocationMenu")

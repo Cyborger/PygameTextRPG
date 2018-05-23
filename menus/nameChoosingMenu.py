@@ -17,7 +17,7 @@ class NameChoosingMenu(Menu):
         if len(self.nameInputField.getContent()) > 0:
             newPlayer = self.getParent().newPlayer
             newPlayer.name = self.nameInputField.getContent()
-            self.getRoot().getState("locationState").player = newPlayer
+            self.getRoot().player = newPlayer
             self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
                                           "slow")
 

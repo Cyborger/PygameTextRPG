@@ -8,7 +8,7 @@ class PlayerInfoMenu(Menu):
         super().__init__("playerInfoMenu", parentState)
 
     def isNowCurrentMenu(self):
-        player = self.getParent().player
+        player = self.getRoot().player
         self.labels[:] = []
         self.buttons[:] = []
         self.addLabels(Label("Name: " + player.name, 20, 50),

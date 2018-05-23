@@ -1,3 +1,4 @@
+import random
 from core.jsonLoader import JSONLoader
 from core.location import Location
 from core.state import State
@@ -12,9 +13,24 @@ class LocationState(State):
         super().__init__("locationState", game)
         self.locations = JSONLoader.loadJSONFile("locations", Location)
         self.currentLocation = self.locations[0]
-        self.player = Player()  # Default player, if skipping character creation
         self.addMenus(MainLocationMenu(self), TravelMenu(self),
                       PlayerInfoMenu(self))
+
+    def changeLocation(self, location):
+        # Figure out if battle or not
+        self.currentLocation = location
+        if self.currentLocation.hasEnemies():
+            self.lookForEnemies()
+        else:
+            self.getRoot().fadeMenuChange("mainLocationMenu")
+
+    def lookForEnemies(self):
+        roll = random.randint(1, 2)
+        if roll == 2:
+            location = self.currentLocation
+            self.getRoot().getState("battleState").newBattle(location)
+        else:
+            self.getRoot().fadeMenuChange("mainLocationMenu")
 
     def getLocation(self, locationName):
         for location in self.locations:

@@ -1,21 +1,24 @@
 import pygame
 from core.display import Display
 from core.message import Message
+from core.player import Player
 from states.titleMenuState import TitleMenuState
 from states.characterCreationState import CharacterCreationState
 from states.locationState import LocationState
+from states.battleState import BattleState
 
 
 class Game:
     def __init__(self):
         self.display = Display(700, 700)
         self.states = [TitleMenuState(self), CharacterCreationState(self),
-                       LocationState(self)]
+                       LocationState(self), BattleState(self)]
         self.currentState = None
         self.running = True
+        self.player = Player()
 
     def start(self):
-        self.changeMenu("titleMenuState/titleMenu")
+        self.changeMenu("locationState/mainLocationMenu")
         self.loop()
 
     def loop(self):
