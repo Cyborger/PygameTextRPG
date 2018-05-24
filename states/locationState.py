@@ -1,12 +1,12 @@
 import random
-from core.jsonLoader import JSONLoader
-from core.location import Location
-from core.state import State
-from core.player import Player
 from menus.mainLocationMenu import MainLocationMenu
 from menus.travelMenu import TravelMenu
 from menus.playerInfoMenu import PlayerInfoMenu
 from menus.inventoryMenu import InventoryMenu
+from lib.jsonLoader import JSONLoader
+from lib.state import State
+from core.location import Location
+from core.player import Player
 
 
 class LocationState(State):

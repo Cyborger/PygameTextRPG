@@ -1,8 +1,8 @@
-from core.menu import Menu
+from lib.menu import Menu
+from lib.jsonLoader import JSONLoader
+from lib.gui.label import Label
+from lib.gui.labelButton import LabelButton
 from core.playerClass import PlayerClass
-from core.jsonLoader import JSONLoader
-from core.gui.label import Label
-from core.gui.labelButton import LabelButton
 
 
 class ClassSelectionMenu(Menu):

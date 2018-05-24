@@ -1,7 +1,7 @@
-from core.menu import Menu
-from core.gui.labelButton import LabelButton
-from core.gui.label import Label
-from core.gui.multilineLabel import MultilineLabel
+from lib.menu import Menu
+from lib.gui.labelButton import LabelButton
+from lib.gui.label import Label
+from lib.gui.multilineLabel import MultilineLabel
 
 
 class TitleMenu(Menu):

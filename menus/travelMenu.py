@@ -1,10 +1,10 @@
 import pygame
-from core.menu import Menu
-from core.gui.surface import Surface
-from core.gui.imageButton import ImageButton
-from core.gui.label import Label
-from core.gui.labelButton import LabelButton
-from core.menuNavigationHandler import MenuNavigationHandler
+from lib.menu import Menu
+from lib.gui.surface import Surface
+from lib.gui.imageButton import ImageButton
+from lib.gui.label import Label
+from lib.gui.labelButton import LabelButton
+from lib.menuNavigationHandler import MenuNavigationHandler
 
 
 class TravelMenu(Menu):

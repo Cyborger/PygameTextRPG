@@ -1,8 +1,8 @@
+from lib.jsonLoader import JSONLoader
+from lib.menu import Menu
+from lib.gui.label import Label
+from lib.gui.labelButton import LabelButton
 from core.race import Race
-from core.jsonLoader import JSONLoader
-from core.menu import Menu
-from core.gui.label import Label
-from core.gui.labelButton import LabelButton
 
 
 class RaceSelectionMenu(Menu):

@@ -1,7 +1,7 @@
-from core.menu import Menu
-from core.gui.multilineLabel import MultilineLabel
-from core.gui.labelButton import LabelButton
-from core.gui.surface import Surface
+from lib.menu import Menu
+from lib.gui.multilineLabel import MultilineLabel
+from lib.gui.labelButton import LabelButton
+from lib.gui.surface import Surface
 
 
 class ClassConfirmationMenu(Menu):

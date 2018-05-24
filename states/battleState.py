@@ -1,9 +1,9 @@
 import copy
-from core.enemy import Enemy
-from core.state import State
-from core.jsonLoader import JSONLoader
 from menus.battleMenu import BattleMenu
 from menus.inventoryMenu import InventoryMenu
+from lib.jsonLoader import JSONLoader
+from lib.state import State
+from core.enemy import Enemy
 
 
 class BattleState(State):

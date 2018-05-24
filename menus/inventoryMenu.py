@@ -1,5 +1,5 @@
-from core.menu import Menu
-from core.gui.labelButton import LabelButton
+from lib.menu import Menu
+from lib.gui.labelButton import LabelButton
 
 
 class InventoryMenu(Menu):

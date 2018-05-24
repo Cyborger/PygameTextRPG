@@ -1,13 +1,14 @@
 import pygame
-from core.jsonLoader import JSONLoader
-from core.item import Item
-from core.display import Display
-from core.message import Message
-from core.player import Player
 from states.titleMenuState import TitleMenuState
 from states.characterCreationState import CharacterCreationState
 from states.locationState import LocationState
 from states.battleState import BattleState
+from lib.jsonLoader import JSONLoader
+from lib.display import Display
+from lib.message import Message
+from core.item import Item
+from core.player import Player
+
 
 
 class Game:

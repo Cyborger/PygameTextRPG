@@ -1,5 +1,5 @@
-from core.state import State
 from menus.titleMenu import TitleMenu
+from lib.state import State
 
 
 class TitleMenuState(State):
