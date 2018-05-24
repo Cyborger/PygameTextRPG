@@ -2,6 +2,7 @@
   "Camp" : {
     "Name" : "Camp",
     "Image" : "campfire",
+    "CanRest" : true,
     "MapLocation" : [50, 350],
     "ConnectedLocations" : {
       "East" : "Forest"

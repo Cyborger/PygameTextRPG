@@ -21,7 +21,7 @@ class WeaponChocieMenu(Menu):
 
     def weaponSelected(self, weapon):
         self.getParent().weaponSelected = weapon
-        self.getRoot().fadeMenuChange("attackChoiceMenu")
+        self.getRoot().fadeMenuChange("attackChoiceMenu", "fast")
 
     def goBack(self):
-        self.getRoot().fadeMenuChange("battleMenu")
+        self.getRoot().fadeMenuChange("battleMenu", "fast")

@@ -17,11 +17,11 @@ class AttackChoiceMenu(Menu):
         self.addButtons(LabelButton("Back", 20, 600, self.goBack))
 
     def enemySelected(self, enemy):
-        enemy.currentHealth -= self.getParent().weaponSelected.damage
-        self.getRoot().fadeMenuChange("battleMenu")
+        damage = self.getParent().weaponSelected.damage
+        self.getParent().attackEnemy(enemy, damage)
 
     def goBack(self):
-        self.getRoot().fadeMenuChange("weaponChoiceMenu")
+        self.getRoot().fadeMenuChange("weaponChoiceMenu", "fast")
 
 
 class EnemyButton(Button):

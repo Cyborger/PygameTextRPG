@@ -16,8 +16,9 @@ class MainLocationMenu(Menu):
         if self.getParent().currentLocation.hasEnemies():
             func = self.getParent().lookForEnemies
             self.addButtons(LabelButton("Look Around", 20, 250, func))
-        self.addButtons(LabelButton("Travel", 20, 300, self.goToTravelMenu))
-        self.addButtons(LabelButton("Rest", 20, 350, self.rest))
+        if self.getParent().currentLocation.canRest:
+            self.addButtons(LabelButton("Rest", 20, 300, self.rest))
+        self.addButtons(LabelButton("Travel", 20, 350, self.goToTravelMenu))
         self.addButtons(LabelButton("Player Stats", 20, 400, self.playerStats))
         self.addButtons(LabelButton("Inventory", 20, 450, self.goToInventory))
 

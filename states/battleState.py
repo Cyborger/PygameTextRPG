@@ -30,6 +30,15 @@ class BattleState(State):
                     self.currentEnemies.append(copy.deepcopy(enemyType))
         self.getRoot().fadeMenuChange("battleState/battleMenu")
 
+    def attackEnemy(self, enemy, damage):
+        enemy.currentHealth -= damage
+        if enemy.currentHealth <= 0:
+            self.currentEnemies.remove(enemy)
+        if len(self.currentEnemies) == 0:
+            self.getRoot().fadeMenuChange("locationState/mainLocationMenu")
+        else:
+            self.getRoot().fadeMenuChange("battleMenu")
+            
     def getEnemyGUISurfaces(self):
         # Return the images with enemy names and health bars
         surfaces = []
