@@ -20,7 +20,8 @@ class WeaponChocieMenu(Menu):
         self.addButtons(LabelButton("Back", 10, y, self.goBack))
 
     def weaponSelected(self, weapon):
-        print("Weapon selected: " + weapon.name)
+        self.getParent().weaponSelected = weapon
+        self.getRoot().fadeMenuChange("attackChoiceMenu")
 
     def goBack(self):
         self.getRoot().fadeMenuChange("battleMenu")

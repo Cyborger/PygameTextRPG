@@ -7,7 +7,7 @@ class Location:
         self.mapLocation = jsonData["MapLocation"]
         self.connectedLocations = jsonData["ConnectedLocations"]
         self.image = "res/locationIcons/" + jsonData["Image"] + ".png"
-        self.enemies = jsonData["Enemies"] if "Enemies" in jsonData else None
+        self.enemies =  None if "Enemies" in jsonData jsonData["Enemies"]
 
     def locationIsAdjacent(self, location):
         for direction in self.connectedLocations:

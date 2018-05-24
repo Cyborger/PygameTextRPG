@@ -5,10 +5,12 @@
   },
   "Sword" : {
     "Name" : "Sword",
-    "Type" : "Weapon"
+    "Type" : "Weapon",
+    "Damage" : 4
   },
   "Longbow" : {
     "Name" : "Longbow",
-    "Type" : "Weapon"
+    "Type" : "Weapon",
+    "Damage": 3
   }
 }
