@@ -1,26 +1,48 @@
+import pygame
 import copy
 from menus.battleMenu import BattleMenu
 from menus.inventoryMenu import InventoryMenu
+from menus.weaponChoiceMenu import WeaponChocieMenu
 from lib.jsonLoader import JSONLoader
 from lib.state import State
+from lib.gui.label import Label
+from lib.gui.surface import Surface
 from core.enemy import Enemy
 
 
 class BattleState(State):
     def __init__(self, game):
         super().__init__("battleState", game)
-        self.addMenus(BattleMenu(self), InventoryMenu(self, "battleMenu"))
+        self.addMenus(BattleMenu(self), WeaponChocieMenu(self),
+                      InventoryMenu(self, "battleMenu"))
         self.enemies = JSONLoader.loadJSONFile("enemies", Enemy)
-        self.currentEnemes = []
+        self.currentEnemies = []
 
     def newBattle(self, location):
-        self.currentEnemes[:] = []
+        self.currentEnemies[:] = []
         for enemy in location.enemies:
             for enemyType in self.enemies:
                 if enemy == enemyType.name:
-                    self.currentEnemes.append(copy.deepcopy(enemyType))
+                    self.currentEnemies.append(copy.deepcopy(enemyType))
         self.getRoot().fadeMenuChange("battleState/battleMenu")
 
-    def getEnemyGUI(self):
+    def getEnemyGUISurfaces(self):
         # Return the images with enemy names and health bars
-        pass
+        surfaces = []
+        x = 400
+        y = 200
+        spacing = 100
+        for enemy in self.currentEnemies:
+            background = pygame.Surface((350, 75))
+            points = [[0, 0], [300, 0], [300, 74], [35, 74]]
+            pygame.draw.polygon(background, (255, 255, 255), points, 2)
+            nameLabel = Label(enemy.name, 50, 10)
+            health = enemy.currentHealth
+            maxHealth = enemy.maxHealth
+            healthString = str(health) + "/" + str(maxHealth)
+            healthLabel  = Label(healthString, 50, 40)
+            background.blit(nameLabel.image, nameLabel.rect)
+            background.blit(healthLabel.image, healthLabel.rect)
+            surfaces.append(Surface(background, x, y))
+            y += spacing
+        return surfaces

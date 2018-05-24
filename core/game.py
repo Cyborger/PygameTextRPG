@@ -20,7 +20,7 @@ class Game:
         self.running = True
         self.items = JSONLoader.loadJSONFile("items", Item)
         self.player = Player()
-        self.player.inventory.addItem(self.items[0])
+        self.player.inventory.addItem(self.items[1])
 
     def start(self):
         self.changeMenu("locationState/mainLocationMenu")

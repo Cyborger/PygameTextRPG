@@ -1,5 +1,14 @@
 {
   "Apple" : {
-    "Name" : "Apple"
+    "Name" : "Apple",
+    "Type" : "Food"
+  },
+  "Sword" : {
+    "Name" : "Sword",
+    "Type" : "Weapon"
+  },
+  "Longbow" : {
+    "Name" : "Longbow",
+    "Type" : "Weapon"
   }
 }

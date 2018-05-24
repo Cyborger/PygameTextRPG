@@ -8,8 +8,12 @@ class BattleMenu(Menu):
         self.addButtons(LabelButton("Inventory", 20, 350, self.goToInventory))
         self.addButtons(LabelButton("Flee", 20, 400, self.attemptToFlee))
 
+    def isNowCurrentMenu(self):
+        self.surfaces[:] = []
+        self.surfaces.extend(self.getParent().getEnemyGUISurfaces())
+
     def goToAttackMenu(self):
-        print("Attacking")
+        self.getRoot().fadeMenuChange("weaponChoiceMenu", "fast")
 
     def goToInventory(self):
         self.getRoot().fadeMenuChange("inventoryMenu", "fast")
