@@ -11,7 +11,7 @@ class WeaponChocieMenu(Menu):
         self.surfaces[:] = []
         self.surfaces.extend(self.getParent().getEnemyGUISurfaces())
         weapons = self.getRoot().player.inventory.getWeapons()
-        y = 20
+        y = 200
         spacing = 50
         for weapon in weapons:
             self.addButtons(LabelButton(weapon.name, 20, y,

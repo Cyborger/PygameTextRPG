@@ -45,6 +45,13 @@ class Menu:
         for surface in surfaces:
             self.surfaces.append(surface)
 
+    def createButtonList(self, buttons, x, y, spacing):
+        for button in buttons:
+            button.rect.x = x
+            button.rect.y = y
+            y += spacing
+        self.buttons.extend(buttons)
+        
     def getRoot(self):
         return self.parentState.getRoot()
 

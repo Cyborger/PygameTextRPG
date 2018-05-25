@@ -13,14 +13,16 @@ class MainLocationMenu(Menu):
         currentLocationImage = self.getParent().currentLocation.image
         self.addSurfaces(Surface(currentLocationImage, 425, 200))
 
+        buttons = []
         if self.getParent().currentLocation.hasEnemies():
             func = self.getParent().lookForEnemies
-            self.addButtons(LabelButton("Look Around", 20, 250, func))
+            buttons.append(LabelButton("Look Around", 0, 0, func))
+        buttons.append(LabelButton("Travel", 0, 0, self.goToTravelMenu))
         if self.getParent().currentLocation.canRest:
-            self.addButtons(LabelButton("Rest", 20, 300, self.rest))
-        self.addButtons(LabelButton("Travel", 20, 350, self.goToTravelMenu))
-        self.addButtons(LabelButton("Player Stats", 20, 400, self.playerStats))
-        self.addButtons(LabelButton("Inventory", 20, 450, self.goToInventory))
+            buttons.append(LabelButton("Rest", 0, 0, self.rest))
+        buttons.append(LabelButton("Player Stats", 0, 0, self.playerStats))
+        buttons.append(LabelButton("Inventory", 0, 0, self.goToInventory))
+        self.createButtonList(buttons, 20, 300, 50)
 
     def goToTravelMenu(self):
         self.getRoot().fadeMenuChange("travelMenu", "fast")
