@@ -3,7 +3,7 @@ from lib.gui.surface import Surface
 
 
 class Label(Surface):
-    def __init__(self, text, x, y, fontSize=24):
+    def __init__(self, text, x=0, y=0, fontSize=24):
         self.text = text
         self.font = pygame.font.Font("res/fonts/PressStart2P-Regular.ttf",
                                      fontSize)

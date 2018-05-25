@@ -7,17 +7,18 @@ from lib.gui.surface import Surface
 class ClassConfirmationMenu(Menu):
     def __init__(self, parentState):
         super().__init__("classConfirmationMenu", parentState)
-        self.addButtons(LabelButton("Confirm Choice", 20, 600, self.nextMenu),
-                        LabelButton("Back", 20, 650, self.goBack))
+        self.addButtons(LabelButton("Confirm Choice", self.nextMenu),
+                        LabelButton("Back", self.goBack))
+        self.listElements(self.buttons, 20, 600)
 
     def isNowCurrentMenu(self):
         self.labels[:] = []
         self.surfaces[:] = []
         description = self.getParent().newPlayer.playerClass.description
-        descriptionLabel = MultilineLabel(description, 40, 40, maxWidth=450)
+        descriptionLabel = MultilineLabel(description, x=40, y=40, maxWidth=450)
         self.addLabels(descriptionLabel)
         image = self.getParent().newPlayer.playerClass.getIcon()
-        surface = Surface(image, 475, 0)
+        surface = Surface(image, x=475)
         surface.rect.centery = descriptionLabel.rect.centery
         self.addSurfaces(surface)
 

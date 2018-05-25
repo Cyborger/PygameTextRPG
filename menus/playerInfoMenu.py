@@ -11,14 +11,15 @@ class PlayerInfoMenu(Menu):
         player = self.getRoot().player
         self.labels[:] = []
         self.buttons[:] = []
-        self.addLabels(Label("Name: " + player.name, 20, 50),
-                       Label("Class: " + player.playerClass.name, 20, 100),
-                       Label("Race: " + player.race.name, 20, 150),
+        self.addLabels(Label("Name: " + player.name),
+                       Label("Class: " + player.playerClass.name),
+                       Label("Race: " + player.race.name),
                        Label("Health: " + str(player.currentHealth) + " / "
-                            + str(player.maxHealth), 20, 200),
+                            + str(player.maxHealth)),
                        Label("Mana: " + str(player.currentMana) + " / "
-                            + str(player.maxMana), 20, 250))
-        self.addButtons(LabelButton("Back", 10, 650, self.goBack))
+                            + str(player.maxMana)))
+        self.listElements(self.labels, 20, 40)
+        self.addButtons(LabelButton("Back", self.goBack, x=10, y=650))
 
     def goBack(self):
         self.getRoot().fadeMenuChange("mainLocationMenu", "fast")

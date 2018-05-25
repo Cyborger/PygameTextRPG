@@ -11,13 +11,11 @@ class WeaponChocieMenu(Menu):
         self.surfaces[:] = []
         self.surfaces.extend(self.getParent().getEnemyGUISurfaces())
         weapons = self.getRoot().player.inventory.getWeapons()
-        y = 200
-        spacing = 50
         for weapon in weapons:
-            self.addButtons(LabelButton(weapon.name, 20, y,
-                                        self.weaponSelected, weapon))
-            y += spacing
-        self.addButtons(LabelButton("Back", 10, y, self.goBack))
+            self.addButtons(LabelButton(weapon.name, self.weaponSelected,
+                                        weapon))
+        self.addButtons(LabelButton("Back", self.goBack))
+        self.listElements(self.buttons, 20, 350, align="center")
 
     def weaponSelected(self, weapon):
         self.getParent().weaponSelected = weapon

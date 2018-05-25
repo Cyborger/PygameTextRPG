@@ -35,7 +35,7 @@ class TravelMenu(Menu):
                 end = connectedLocation.mapLocation
                 end = [end[0], end[1]]
                 pygame.draw.line(image, (255, 255, 255), start, end, 3)
-        self.addSurfaces(Surface(image, 0, 0))
+        self.addSurfaces(Surface(image))
 
     def createButtons(self):
         self.buttons[:] = []
@@ -48,24 +48,24 @@ class TravelMenu(Menu):
             if location == self.getParent().currentLocation:
                 # Can't select because it is the current location
                 button = ImageButton(buttonImageCurrent, buttonImageCurrent,
-                    x, y, self.locationChosen, location)
+                    self.locationChosen, location, x=x, y=y)
                 self.addButtons(button)
             elif self.getParent().currentLocation.locationIsAdjacent(location):
                 # Can select because it is adjacent to current
-                button = ImageButton(buttonImage, buttonImageHovered, x, y,
-                    self.locationChosen, location)
+                button = ImageButton(buttonImage, buttonImageHovered,
+                    self.locationChosen, location, x=x, y=y)
                 self.addButtons(button)
             else:
                 # Can't select because not adjacent
-                button = ImageButton(buttonImage, buttonImage, x, y,
-                    self.locationChosen, location)
+                button = ImageButton(buttonImage, buttonImage,
+                                     self.locationChosen, location, x=x, y=y)
                 self.addButtons(button)
-        self.addButtons(LabelButton("Back", 20, 650, self.goBack))
+        self.addButtons(LabelButton("Back", self.goBack, x=20, y=650))
 
     def createLabels(self):
         self.labels[:] = []
         for location in self.getParent().locations:
-            newLabel = Label(location.name, 0, 0, fontSize=16)
+            newLabel = Label(location.name, fontSize=16)
             newLabel.rect.centerx = location.mapLocation[0]
             newLabel.rect.bottom = location.mapLocation[1] - 24
             background = pygame.Surface((newLabel.rect.width,

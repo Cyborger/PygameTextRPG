@@ -13,13 +13,10 @@ class ClassSelectionMenu(Menu):
         self.createButtons()
 
     def createButtons(self):
-        x = 40
-        y = 70
-        ySpacing = 60
         for playerClass in self.classes:
-            self.addButtons(LabelButton(playerClass.name, x, y,
+            self.addButtons(LabelButton(playerClass.name, 0, 0,
                                         self.chooseClass, playerClass))
-            y += ySpacing
+        self.listElements(self.buttons, 40, 70, spacing=35)
         self.addButtons(LabelButton("Back", 20, 650, self.goBack))
 
     def chooseClass(self, playerClass):

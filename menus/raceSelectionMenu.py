@@ -9,17 +9,14 @@ class RaceSelectionMenu(Menu):
     def __init__(self, parentState):
         super().__init__("raceSelectionMenu", parentState)
         self.races = JSONLoader.loadJSONFile("races", Race)
-        self.addLabels(Label("Choose a race: ", 10, 20, fontSize=32))
+        self.addLabels(Label("Choose a race: ", x=10, y=20, fontSize=32))
         self.createButtons()
 
     def createButtons(self):
-        x = 40
-        y = 70
-        ySpacing = 60
         for race in self.races:
-            self.addButtons(LabelButton(race.name, x, y, self.chooseRace, race))
-            y += ySpacing
-        self.addButtons(LabelButton("Back", 20, 650, self.goBack))
+            self.addButtons(LabelButton(race.name, self.chooseRace, race))
+        self.listElements(self.buttons, 40, 70, spacing=35)
+        self.addButtons(LabelButton("Back", self.goBack, x=20, y=650))
 
     def chooseRace(self, race):
         self.getParent().newPlayer.race = race

@@ -3,7 +3,7 @@ from lib.gui.surface import Surface
 
 
 class MultilineLabel(Surface):
-    def __init__(self, text, x, y, maxWidth=400, fontSize=24):
+    def __init__(self, text, x=0, y=0, maxWidth=400, fontSize=24):
         self.text = text
         self.font = pygame.font.Font("res/fonts/PressStart2P-Regular.ttf",
                                      fontSize)

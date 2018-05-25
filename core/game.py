@@ -23,7 +23,7 @@ class Game:
         self.player.inventory.addItem(self.items[1])
 
     def start(self):
-        self.changeMenu("locationState/mainLocationMenu")
+        self.changeMenu("titleMenuState/titleMenu")
         self.loop()
 
     def loop(self):
@@ -49,12 +49,8 @@ class Game:
                 return state
         raise StateNotFoundException(stateName)
 
-    def getMenu(self, menuPath):
-        splitPath = self.splitMenuPath(menuPath)
-        return self.getState(splitPath[0]).getMenu(splitPath[1])
-
     def fadeMenuChange(self, menuPath, duration="normal"):
-        timeToFade = {"fast" : 0.75, "normal" : 1.5, "slow" : 2.5}[duration]
+        timeToFade = {"fast" : 0.5, "normal" : 1.5, "slow" : 2.5}[duration]
         self.display.fadeOut(timeToFade / 2.0)
         self.changeMenu(menuPath)
         self.currentState.currentMenu.render()

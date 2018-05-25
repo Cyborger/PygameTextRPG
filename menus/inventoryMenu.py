@@ -10,13 +10,10 @@ class InventoryMenu(Menu):
     def isNowCurrentMenu(self):
         self.buttons[:] = []
         inventory = self.getRoot().player.inventory
-        y = 20
-        spacing = 50
         for item in inventory.getItems():
-            self.addButtons(LabelButton(item.name, 20, y, self.itemSelected,
-                                        item))
-            y += spacing
-        self.addButtons(LabelButton("Back", 20, y, self.goBack))
+            self.addButtons(LabelButton(item.name, self.itemSelected, item))
+        self.addButtons(LabelButton("Back", self.goBack))
+        self.listElements(self.buttons, 20, 350, spacing=25,align="center")
 
     def itemSelected(self, item):
         print("Item selected: " + item.name)

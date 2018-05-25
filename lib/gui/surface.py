@@ -2,7 +2,7 @@ import pygame
 
 
 class Surface:
-    def __init__(self, image, x, y):
+    def __init__(self, image, x=0, y=0):
         self.image = self.loadImage(image)
         self.rect = self.image.get_rect()
         self.rect.x = x

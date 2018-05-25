@@ -14,7 +14,7 @@ class AttackChoiceMenu(Menu):
             index = enemySurfaces.index(surface)
             enemy = self.getParent().currentEnemies[index]
             self.addButtons(EnemyButton(surface, self.enemySelected, enemy))
-        self.addButtons(LabelButton("Back", 20, 600, self.goBack))
+        self.addButtons(LabelButton("Back", self.goBack, x=20, y=600))
 
     def enemySelected(self, enemy):
         damage = self.getParent().weaponSelected.damage

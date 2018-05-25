@@ -4,7 +4,7 @@ from lib.gui.label import Label
 
 
 class InputField(Button):
-    def __init__(self, x, y, maxLength=20, fontSize = 24):
+    def __init__(self, x=0, y=0, maxLength=20, fontSize = 24):
         self.font = pygame.font.Font("res/fonts/PressStart2P-Regular.ttf",
                                      fontSize)
         self.borderWidth = 2

@@ -7,9 +7,9 @@ from lib.gui.multilineLabel import MultilineLabel
 class TitleMenu(Menu):
     def __init__(self, parentState):
         super().__init__("titleMenu", parentState)
-        self.addButtons(LabelButton("Begin A New Adventure", 25, 300,
-                                   self.newGame),
-                        LabelButton("Exit Game", 25, 350, self.exit))
+        self.addButtons(LabelButton("Begin A New Adventure", self.newGame),
+                        LabelButton("Exit Game", self.exit))
+        self.listElements(self.buttons, 20, 350, align="center")
 
     def newGame(self):
         newMenu = "characterCreationState/raceSelectionMenu"
