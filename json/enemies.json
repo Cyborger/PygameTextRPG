@@ -1,6 +1,10 @@
 {
   "Goblin" : {
     "Name" : "Goblin",
-    "Health" : 4
+    "Health" : 4,
+    "GoldDrop" : [0, 3],
+    "DropChances" : {
+      "Sword" : 10
+    }
   }
 }

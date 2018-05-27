@@ -9,7 +9,9 @@ class ImageButton(Button):
         self.hoveredImage = hoveredImage
 
     def hover(self):
+        super().hover()
         self.image = self.hoveredImage
 
     def unhover(self):
+        super().unhover()
         self.image = self.unhoveredImage

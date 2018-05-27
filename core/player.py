@@ -13,6 +13,7 @@ class Player:
         self.maxHealth = 20
         self.currentMana = 10
         self.maxMana = 20
+        self.heldWeapon = None
 
     def rest(self):
         self.currentHealth = self.maxHealth

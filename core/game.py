@@ -6,7 +6,7 @@ from states.battleState import BattleState
 from lib.jsonLoader import JSONLoader
 from lib.display import Display
 from lib.message import Message
-from core.item import Item
+from core.itemManager import ItemManager
 from core.player import Player
 
 
@@ -18,12 +18,13 @@ class Game:
                        LocationState(self), BattleState(self)]
         self.currentState = None
         self.running = True
-        self.items = JSONLoader.loadJSONFile("items", Item)
+        self.itemManager = ItemManager()
         self.player = Player()
-        self.player.inventory.addItem(self.items[1])
+        self.player.inventory.addItems(self.itemManager.getItem("Sword"))
+        self.player.heldWeapon = self.player.inventory.getItems()[0]
 
     def start(self):
-        self.changeMenu("titleMenuState/titleMenu")
+        self.changeMenu("locationState/mainLocationMenu")
         self.loop()
 
     def loop(self):

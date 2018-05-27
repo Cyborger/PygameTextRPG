@@ -71,9 +71,9 @@ class MenuNavigationHandler:
     def updateButtonFocus(self):
         for button in self.menu.buttons:
             if button == self.selectedButton:
-                self.selectedButton.forceHover()
+                self.selectedButton.hover()
                 if isinstance(self.selectedButton, InputField):
                     self.currentTextField = button
                     button.selected()
             else:
-                button.forceUnhover()
+                button.unhover()

@@ -1,5 +1,16 @@
 class Item:
     def __init__(self, jsonData):
         self.name = jsonData["Name"]
-        self.type = jsonData["Type"]
-        self.damage = jsonData["Damage"] if "Damage" in jsonData else None
+        self.value = 0
+
+
+class Weapon(Item):
+    def __init__(self, jsonData):
+        super().__init__(jsonData)
+        self.damage = jsonData["Damage"]
+
+
+class Food(Item):
+    def __init__(self, jsonData):
+        super().__init__(jsonData)
+        self.healing = jsonData["Healing"]

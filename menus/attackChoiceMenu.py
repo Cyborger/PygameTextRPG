@@ -10,6 +10,7 @@ class AttackChoiceMenu(Menu):
     def isNowCurrentMenu(self):
         self.buttons[:] = []
         enemySurfaces = self.getParent().getEnemyGUISurfaces()
+        self.listElements(enemySurfaces, 400, 350, align="center")
         for surface in enemySurfaces:
             index = enemySurfaces.index(surface)
             enemy = self.getParent().currentEnemies[index]
@@ -17,17 +18,17 @@ class AttackChoiceMenu(Menu):
         self.addButtons(LabelButton("Back", self.goBack, x=20, y=600))
 
     def enemySelected(self, enemy):
-        damage = self.getParent().weaponSelected.damage
+        damage = self.getRoot().player.heldWeapon.damage
         self.getParent().attackEnemy(enemy, damage)
 
     def goBack(self):
-        self.getRoot().fadeMenuChange("weaponChoiceMenu", "fast")
+        self.getRoot().fadeMenuChange("battleMenu", "fast")
 
 
 class EnemyButton(Button):
     def __init__(self, enemyLabel,func, *funcArgs):
-        super().__init__(enemyLabel.image, enemyLabel.rect.x, enemyLabel.rect.y,
-                         func, *funcArgs)
+        super().__init__(enemyLabel.image, func, *funcArgs, x=enemyLabel.rect.x,
+                         y=enemyLabel.rect.y)
         self.originalRect = enemyLabel.rect
         self.hoverAmount = 75
 

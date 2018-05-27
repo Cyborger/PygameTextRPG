@@ -25,19 +25,12 @@ class Button(Surface):
         if self.hovered:
             self.click(*self.funcArgs)
 
-    def forceHover(self):
-        self.hovered = True
-        self.hover()
-
-    def forceUnhover(self):
-        self.hovered = False
-        self.unhover()
-
     def hover(self):
-        pass
+        self.hovered = True
 
     def unhover(self):
-        pass
+        self.hovered = False
+
 
     def click(self):
         pass
