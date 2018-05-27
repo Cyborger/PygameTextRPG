@@ -6,5 +6,13 @@
     "DropChances" : {
       "Sword" : 10
     }
+  },
+  "Dragon" : {
+    "Name" : "Dragon",
+    "Health" : 40,
+    "GoldDrop" : [50, 100],
+    "DropChances" : {
+      "Dragon Heart" : 2
+    }
   }
 }

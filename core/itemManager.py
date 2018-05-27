@@ -1,5 +1,5 @@
 from lib.jsonLoader import JSONLoader
-from core.item import Food, Weapon
+from core.item import Food, Weapon, CraftingItem
 
 class ItemManager:
     def __init__(self):
@@ -14,6 +14,8 @@ class ItemManager:
                 items.append(Food(itemData))
             elif itemData["Type"] == "Weapon":
                 items.append(Weapon(itemData))
+            elif itemData["Type"] == "Crafting":
+                items.append(CraftingItem(itemData))
         return items
 
     def getItem(self, itemName):

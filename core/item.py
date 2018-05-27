@@ -14,3 +14,7 @@ class Food(Item):
     def __init__(self, jsonData):
         super().__init__(jsonData)
         self.healing = jsonData["Healing"]
+
+class CraftingItem(Item):
+    def __init__(self, jsonData):
+        super().__init__(jsonData)

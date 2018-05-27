@@ -10,7 +10,6 @@ from core.itemManager import ItemManager
 from core.player import Player
 
 
-
 class Game:
     def __init__(self):
         self.display = Display(700, 700)

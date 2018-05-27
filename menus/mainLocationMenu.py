@@ -10,15 +10,20 @@ class MainLocationMenu(Menu):
     def nowCurrentMenu(self):
         self.surfaces[:] = []
         self.buttons[:] = []
-        currentLocationImage = self.getParent().currentLocation.image
-        self.addSurfaces(Surface(currentLocationImage, 425, 200))
+        locationSurface = Surface(self.getParent().currentLocation.image)
+        locationSurface.rect.right = 675
+        locationSurface.rect.centery = 350
+        self.addSurfaces(locationSurface)
+        currentLocation = self.getParent().currentLocation
 
-        if self.getParent().currentLocation.hasEnemies():
+        if currentLocation.hasEnemies():
             func = self.getParent().lookForEnemies
             self.addButtons(LabelButton("Look Around", func))
+        if currentLocation.canMine:
+            self.addButtons(LabelButton("Mine", self.mine))
         self.addButtons(LabelButton("Travel", self.goToTravelMenu))
 
-        if self.getParent().currentLocation.canRest:
+        if currentLocation.canRest:
             self.addButtons(LabelButton("Rest", self.rest))
         self.addButtons(LabelButton("Player Stats", self.playerStats),
                         LabelButton("Inventory", self.goToInventory))
@@ -26,6 +31,11 @@ class MainLocationMenu(Menu):
 
     def goToTravelMenu(self):
         self.getRoot().fadeMenuChange("travelMenu", "fast")
+
+    def mine(self):
+        ore = self.getRoot().itemManager.getItem("Iron Ore")
+        self.getRoot().player.inventory.addItems(ore)
+        self.getRoot().fadeMenuChange("mainLocationMenu", "fast")
 
     def rest(self):
         self.getRoot().player.rest()

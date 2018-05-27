@@ -13,5 +13,13 @@
     "Name" : "Longbow",
     "Type" : "Weapon",
     "Damage": 3
+  },
+  "Dragon Heart" : {
+    "Name" : "Dragon Heart",
+    "Type" : "Crafting"
+  },
+  "Iron Ore" : {
+    "Name" : "Iron Ore",
+    "Type" : "Crafting"
   }
 }
