@@ -13,10 +13,10 @@
   },
   "Vanguard" : {
     "Name" : "Vanguard",
-    "Description" : ""
+    "Description" : "With a towering shield and mighty hammer, good luck getting past a vanguard. They are able to form an impentrable defense that can handle serious damage."
   },
-  "Sharpshooter" : {
-    "Name" : "Sharpshooter",
-    "Description" : ""
+  "Necromancer" : {
+    "Name" : "Necromancer",
+    "Description" : "While most fear the dead, skull necromancers raise the dead from their graves. Although weak on their own, the undead can triumph when in large numbers."
   }
 }

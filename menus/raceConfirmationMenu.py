@@ -9,7 +9,7 @@ class RaceConfirmationMenu(Menu):
                         LabelButton("Back", self.goBack))
         self.listElements(self.buttons, 20, 600)
 
-    def isNowCurrentMenu(self):
+    def nowCurrentMenu(self):
         self.labels[:] = []
         description = self.getParent().newPlayer.race.description
         self.addLabels(MultilineLabel(description, x=40, y=40, maxWidth=600))

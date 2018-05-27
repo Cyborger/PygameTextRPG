@@ -3,6 +3,7 @@ import copy
 from menus.battleMenu import BattleMenu
 from menus.inventoryMenu import InventoryMenu
 from menus.attackChoiceMenu import AttackChoiceMenu
+from menus.lootMenu import LootMenu
 from lib.jsonLoader import JSONLoader
 from lib.state import State
 from lib.gui.label import Label
@@ -14,15 +15,15 @@ class BattleState(State):
     def __init__(self, game):
         super().__init__("battleState", game)
         self.addMenus(BattleMenu(self), InventoryMenu(self, "battleMenu"),
-                      AttackChoiceMenu(self))
+                      AttackChoiceMenu(self), LootMenu(self))
         self.enemies = JSONLoader.loadJSONFile("enemies", Enemy)
         self.currentEnemies = []
-        self.itemsDrops = []
+        self.itemDrops = []
         self.goldDrop = 0
 
     def newBattle(self, location):
         self.currentEnemies[:] = []
-        self.itemsDrops[:] = []
+        self.itemDrops[:] = []
         self.goldDrop = 0
         for enemy in location.enemies:
             for enemyType in self.enemies:
@@ -38,9 +39,7 @@ class BattleState(State):
             self.calculateEnemyDrops(enemy)
             self.currentEnemies.remove(enemy)
         if len(self.currentEnemies) == 0:
-            self.getRoot().player.inventory.gold += self.goldDrop
-            self.getRoot().player.inventory.addItems(*self.itemsDrops)
-            self.getRoot().fadeMenuChange("locationState/mainLocationMenu")
+            self.getRoot().fadeMenuChange("lootMenu")
         else:
             self.getRoot().fadeMenuChange("battleMenu", "fast")
 
@@ -48,7 +47,7 @@ class BattleState(State):
         self.goldDrop += enemy.getGoldDrop()
         for itemName in enemy.getItemDrops():
             drop = self.getRoot().itemManager.getItem(itemName)
-            self.itemsDrops.append(drop)
+            self.itemDrops.append(drop)
 
     def getEnemyGUISurfaces(self):
         surfaces = []

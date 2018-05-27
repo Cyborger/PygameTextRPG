@@ -31,6 +31,5 @@ class Button(Surface):
     def unhover(self):
         self.hovered = False
 
-
     def click(self):
         pass

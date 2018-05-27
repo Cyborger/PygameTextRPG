@@ -12,7 +12,7 @@ class TravelMenu(Menu):
         super().__init__("travelMenu", parentState)
         self.navigationHandler = MapNavigationHandler(self)
 
-    def isNowCurrentMenu(self):
+    def nowCurrentMenu(self):
         self.createBackground()
         self.createButtons()
         self.createLabels()

@@ -8,7 +8,7 @@ class InventoryMenu(Menu):
         super().__init__("inventoryMenu", parentState)
         self.menuToReturnTo = menuToReturnTo
 
-    def isNowCurrentMenu(self):
+    def nowCurrentMenu(self):
         self.surfaces[:] = []
         self.buttons[:] = []
         inventory = self.getRoot().player.inventory

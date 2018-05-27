@@ -21,7 +21,7 @@ class State:
     def changeMenu(self, menuName):
         pygame.event.clear()
         self.currentMenu = self.getMenu(menuName)
-        self.currentMenu.isNowCurrentMenu()
+        self.currentMenu.nowCurrentMenu()
         self.currentMenu.navigationHandler.resetSelection()
 
     def getRoot(self):

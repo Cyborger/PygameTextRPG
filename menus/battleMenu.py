@@ -6,7 +6,7 @@ class BattleMenu(Menu):
         super().__init__("battleMenu", parentState)
 
 
-    def isNowCurrentMenu(self):
+    def nowCurrentMenu(self):
         self.surfaces = self.getParent().getEnemyGUISurfaces()
         self.buttons[:] = []
         self.listElements(self.surfaces, 400, 350, align="center")

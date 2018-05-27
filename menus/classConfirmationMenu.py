@@ -11,7 +11,7 @@ class ClassConfirmationMenu(Menu):
                         LabelButton("Back", self.goBack))
         self.listElements(self.buttons, 20, 600)
 
-    def isNowCurrentMenu(self):
+    def nowCurrentMenu(self):
         self.labels[:] = []
         self.surfaces[:] = []
         description = self.getParent().newPlayer.playerClass.description

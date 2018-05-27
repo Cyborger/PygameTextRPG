@@ -12,7 +12,7 @@ class Menu:
         self.labels = []
         self.surfaces = []
 
-    def isNowCurrentMenu(self):
+    def nowCurrentMenu(self):
         pass
 
     def update(self):

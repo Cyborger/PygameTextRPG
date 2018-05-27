@@ -7,7 +7,7 @@ class MainLocationMenu(Menu):
     def __init__(self, parentState):
         super().__init__("mainLocationMenu", parentState)
 
-    def isNowCurrentMenu(self):
+    def nowCurrentMenu(self):
         self.surfaces[:] = []
         self.buttons[:] = []
         currentLocationImage = self.getParent().currentLocation.image

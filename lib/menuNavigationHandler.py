@@ -11,14 +11,16 @@ class MenuNavigationHandler:
     def resetSelection(self):
         self.selectedButton = self.menu.buttons[0]
         if not isinstance(self.menu.buttons[0], InputField):
-            self.updateButtons(pygame.mouse.get_pos())
+            for button in self.menu.buttons:
+                if button.isHovering(pygame.mouse.get_pos()):
+                    button.hovered = True
         self.updateButtonFocus()
 
     def handleNavigationEvents(self, events):
         for event in events:
             if event.type == pygame.MOUSEMOTION:
                 self.updateButtons(event.pos)
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 self.handleMouseClick()
             elif event.type == pygame.KEYDOWN:
                 self.handleKeyPressEvents(event)
