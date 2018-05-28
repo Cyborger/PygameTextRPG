@@ -18,7 +18,7 @@ class ClassConfirmationMenu(Menu):
         descriptionLabel = MultilineLabel(description, x=40, y=40, maxWidth=450)
         self.addLabels(descriptionLabel)
         image = self.getParent().newPlayer.playerClass.getIcon()
-        surface = Surface(image, x=475)
+        surface = Surface(image, x=450)
         surface.rect.centery = descriptionLabel.rect.centery
         self.addSurfaces(surface)
 

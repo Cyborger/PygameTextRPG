@@ -23,7 +23,7 @@ class Game:
         self.player.heldWeapon = self.player.inventory.getItems()[0]
 
     def start(self):
-        self.changeMenu("locationState/mainLocationMenu")
+        self.changeMenu("titleMenuState/titleMenu")
         self.loop()
 
     def loop(self):
