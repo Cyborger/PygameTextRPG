@@ -68,7 +68,10 @@ class MenuNavigationHandler:
             self.selectedButton = self.menu.buttons[previousButton]
             self.updateButtonFocus()
         elif event.key == pygame.K_RETURN:
-            self.selectedButton.checkForClick()
+            if isinstance(self.selectedButton, InputField):
+                self.selectedButton.checkForClick(self)
+            else:
+                self.selectedButton.checkForClick()
 
     def updateButtonFocus(self):
         for button in self.menu.buttons:

@@ -20,6 +20,7 @@ class NameChoosingMenu(Menu):
             newPlayer.name = self.nameInputField.getContent()
             self.getRoot().player = newPlayer
             self.getRoot().player.inventory.addItems(self.getRoot().itemManager.getItem("Sword"))
+            self.getRoot().player.heldWeapon = self.getRoot().player.inventory.getItems()[0]
             self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
                                           "slow")
 
