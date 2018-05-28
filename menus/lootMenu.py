@@ -9,6 +9,7 @@ class LootMenu(Menu):
 
     def nowCurrentMenu(self):
         self.labels[:] = []
+        self.buttons[:] = []
         self.addLabels(Label("Gold Earned: %s" % self.getParent().goldDrop))
         self.addLabels(Label("Items Dropped: "))
         self.listElements(self.labels, 20, 350, align="center")
@@ -25,7 +26,6 @@ class LootMenu(Menu):
                 itemLabels.append(label)
 
         self.listElements(itemLabels, 40, itemListY)
-
         self.addButtons(LabelButton("Continue", self.nextMenu, x=20, y=600))
 
     def nextMenu(self):

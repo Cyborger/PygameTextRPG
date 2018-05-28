@@ -25,11 +25,9 @@ class BattleState(State):
         self.currentEnemies[:] = []
         self.itemDrops[:] = []
         self.goldDrop = 0
-        for enemy in location.enemies:
+        for enemy in location.getEnemies():
             for enemyType in self.enemies:
                 if enemy == enemyType.name:
-                    self.currentEnemies.append(copy.deepcopy(enemyType))
-                    self.currentEnemies.append(copy.deepcopy(enemyType))
                     self.currentEnemies.append(copy.deepcopy(enemyType))
         self.getRoot().fadeMenuChange("battleState/battleMenu")
 

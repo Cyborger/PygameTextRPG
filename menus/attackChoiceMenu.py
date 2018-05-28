@@ -33,7 +33,9 @@ class EnemyButton(Button):
         self.hoverAmount = 75
 
     def hover(self):
+        super().hover()
         self.rect.x = self.originalRect.x - self.hoverAmount
 
     def unhover(self):
+        super().unhover()
         self.rect.x = self.originalRect.x

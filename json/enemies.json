@@ -4,7 +4,7 @@
     "Health" : 4,
     "GoldDrop" : [0, 3],
     "DropChances" : {
-      "Sword" : 10
+      "Sword" : 20
     }
   },
   "Dragon" : {
@@ -12,7 +12,7 @@
     "Health" : 40,
     "GoldDrop" : [50, 100],
     "DropChances" : {
-      "Dragon Heart" : 2
+      "Dragon Heart" : 10
     }
   }
 }

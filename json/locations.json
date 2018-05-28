@@ -55,9 +55,7 @@
     "ConnectedLocations" : {
       "West" : "Forest Path"
     },
-    "Enemies" : [
-      "Dragon"
-    ]
+    "Boss" : "Dragon"
   },
   "Quarry" : {
     "Name" : "Quarry",
