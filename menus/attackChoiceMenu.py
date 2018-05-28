@@ -18,8 +18,14 @@ class AttackChoiceMenu(Menu):
         self.addButtons(LabelButton("Back", self.goBack, x=20, y=600))
 
     def enemySelected(self, enemy):
-        damage = self.getRoot().player.heldWeapon.damage
-        self.getParent().attackEnemy(enemy, damage)
+        enemy.takeDamage(self.getRoot().player.heldWeapon.damage)
+        if enemy.isDead():
+            self.getParent().calculateEnemyDrops()
+            self.getParent().currentEnemies.remove(enemy)
+        if len(self.getParent().currentEnemies) == 0:
+            self.getRoot().fadeMenuChange("lootMenu")
+        else:
+            self.getRoot().fadeMenuChange("battleMenu", "fast")
 
     def goBack(self):
         self.getRoot().fadeMenuChange("battleMenu", "fast")

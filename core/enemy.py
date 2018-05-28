@@ -4,8 +4,8 @@ import random
 class Enemy:
     def __init__(self, jsonData):
         self.name = jsonData["Name"]
+        self.currentHealth = jsonData["Health"]
         self.maxHealth = jsonData["Health"]
-        self.currentHealth = self.maxHealth
         self.goldDrop = jsonData["GoldDrop"]
         self.dropChances = jsonData["DropChances"]
 
@@ -17,11 +17,11 @@ class Enemy:
             return True
         return False
 
-    def getGoldDrop(self):
+    def calculateGoldDrop(self):
         roll = random.randint(self.goldDrop[0], self.goldDrop[1])
         return roll
-        
-    def getItemDrops(self):
+
+    def calculateItemDrops(self):
         drops = []
         roll = random.randint(0, 100)
         for drop in self.dropChances:

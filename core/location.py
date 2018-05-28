@@ -24,7 +24,7 @@ class Location:
             return True
         return False
 
-    def getEnemies(self):
+    def getEnemyEncounter(self):
         enemies = []
         if self.boss is not None:
             enemies.append(self.boss)

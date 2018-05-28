@@ -13,8 +13,7 @@ class Surface:
             return pygame.image.load(image)
         elif isinstance(image, pygame.Surface):
             return image
-        else:
-            raise InvalidSurfaceException(image)
+        raise InvalidSurfaceException(image)
 
 
 class InvalidSurfaceException(Exception):

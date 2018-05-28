@@ -52,7 +52,6 @@ class InputField(Button):
         if self.showPrompt:
             self.renderPrompt()
 
-
     def renderPrompt(self):
         promptX = (self.inputLabel.rect.x +
             self.font.size(self.inputLabel.text)[0])

@@ -31,16 +31,6 @@ class BattleState(State):
                     self.currentEnemies.append(copy.deepcopy(enemyType))
         self.getRoot().fadeMenuChange("battleState/battleMenu")
 
-    def attackEnemy(self, enemy, damage):
-        enemy.takeDamage(damage)
-        if enemy.isDead():
-            self.calculateEnemyDrops(enemy)
-            self.currentEnemies.remove(enemy)
-        if len(self.currentEnemies) == 0:
-            self.getRoot().fadeMenuChange("lootMenu")
-        else:
-            self.getRoot().fadeMenuChange("battleMenu", "fast")
-
     def calculateEnemyDrops(self, enemy):
         self.goldDrop += enemy.getGoldDrop()
         for itemName in enemy.getItemDrops():

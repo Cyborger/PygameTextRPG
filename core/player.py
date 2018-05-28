@@ -6,13 +6,13 @@ from core.playerClass import PlayerClass
 class Player:
     def __init__(self):
         self.name = "Default"
-        self.inventory = Inventory()
         self.playerClass = PlayerClass.getDefaultPlayerClass()
         self.race = Race.getDefaultRace()
         self.currentHealth = 10
         self.maxHealth = 20
         self.currentMana = 10
         self.maxMana = 20
+        self.inventory = Inventory()
         self.heldWeapon = None
 
     def rest(self):
