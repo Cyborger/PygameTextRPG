@@ -14,12 +14,12 @@
     "Type" : "Weapon",
     "Damage": 3
   },
-  "Dragon Heart" : {
-    "Name" : "Dragon Heart",
+  "DragonHeart" : {
+    "Name" : "DragonHeart",
     "Type" : "Crafting"
   },
-  "Iron Ore" : {
-    "Name" : "Iron Ore",
+  "IronOre" : {
+    "Name" : "IronOre",
     "Type" : "Crafting"
   }
 }

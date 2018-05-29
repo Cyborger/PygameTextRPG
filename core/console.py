@@ -53,6 +53,8 @@ class Console:
                 self.changeMenu(commands[1])
             elif commands[0] == "travel":
                 self.travel(commands[1])
+            elif commands[0] == "additem":
+                self.addItem(commands[1])
 
     def displayMessage(self, text):
         self.message = Label(text, y=575, fontSize=16)
@@ -70,6 +72,14 @@ class Console:
             location = self.game.locationManager.getLocation(locationName)
             self.game.getState("locationState").currentLocation = location
             self.game.changeMenu("locationState/mainLocationMenu")
+            self.gettingInput = False
+        except Exception as e:
+            self.displayMessage(str(e))
+
+    def addItem(self, itemName):
+        try:
+            item = self.game.itemManager.getItem(itemName)
+            self.game.player.inventory.addItems(item)
             self.gettingInput = False
         except Exception as e:
             self.displayMessage(str(e))
