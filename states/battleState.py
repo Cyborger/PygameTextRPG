@@ -25,15 +25,15 @@ class BattleState(State):
         self.currentEnemies[:] = []
         self.itemDrops[:] = []
         self.goldDrop = 0
-        for enemy in location.getEnemies():
+        for enemy in location.getEnemyEncounter():
             for enemyType in self.enemies:
                 if enemy == enemyType.name:
                     self.currentEnemies.append(copy.deepcopy(enemyType))
         self.getRoot().fadeMenuChange("battleState/battleMenu")
 
     def calculateEnemyDrops(self, enemy):
-        self.goldDrop += enemy.getGoldDrop()
-        for itemName in enemy.getItemDrops():
+        self.goldDrop += enemy.calculateGoldDrop()
+        for itemName in enemy.calculateItemDrops():
             drop = self.getRoot().itemManager.getItem(itemName)
             self.itemDrops.append(drop)
 

@@ -20,7 +20,7 @@ class AttackChoiceMenu(Menu):
     def enemySelected(self, enemy):
         enemy.takeDamage(self.getRoot().player.heldWeapon.damage)
         if enemy.isDead():
-            self.getParent().calculateEnemyDrops()
+            self.getParent().calculateEnemyDrops(enemy)
             self.getParent().currentEnemies.remove(enemy)
         if len(self.getParent().currentEnemies) == 0:
             self.getRoot().fadeMenuChange("lootMenu")
