@@ -27,7 +27,8 @@ class Menu:
         for event in events:
             if event.type == pygame.QUIT:
                 self.getRoot().running = False
-            elif event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
+            elif (event.type == pygame.KEYDOWN and
+                  event.key == pygame.K_BACKQUOTE):
                 self.getRoot().enterConsole()
         self.navigationHandler.handleNavigationEvents(events)
 

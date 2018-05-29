@@ -12,14 +12,13 @@ from core.player import Player
 class LocationState(State):
     def __init__(self, game):
         super().__init__("locationState", game)
-        self.locations = JSONLoader.loadJSONFile("locations", Location)
-        self.currentLocation = self.locations[0]
+        self.currentLocation = self.getRoot().\
+                locationManager.getLocation("camp")
         self.addMenus(MainLocationMenu(self), TravelMenu(self),
                       PlayerInfoMenu(self),
                       InventoryMenu(self, "mainLocationMenu"))
 
     def changeLocation(self, location):
-        # Figure out if battle or not
         self.currentLocation = location
         if self.currentLocation.hasEnemies():
             self.lookForEnemies()
@@ -33,13 +32,3 @@ class LocationState(State):
             self.getRoot().getState("battleState").newBattle(location)
         else:
             self.getRoot().fadeMenuChange("mainLocationMenu")
-
-    def getLocation(self, locationName):
-        for location in self.locations:
-            if location.name == locationName:
-                return location
-
-
-class LocationNotFoundException(Exception):
-    def __init__(self, locationName):
-        super().__init__("Unable to find location: " + locationName)

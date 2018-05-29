@@ -26,10 +26,11 @@ class TravelMenu(Menu):
     def createBackground(self):
         self.surfaces[:] = []
         image = pygame.Surface((700, 700))
-        for location in self.getParent().locations:
+        for location in self.getRoot().locationManager.locations:
             for direction in location.connectedLocations:
                 locationName = location.connectedLocations[direction]
-                connectedLocation = self.getParent().getLocation(locationName)
+                connectedLocation = self.getRoot().locationManager.\
+                        getLocation(locationName)
                 start = location.mapLocation
                 start = [start[0], start[1]]
                 end = connectedLocation.mapLocation
@@ -43,7 +44,7 @@ class TravelMenu(Menu):
         buttonImageCurrent = pygame.image.load("res/buttons/mapCurrent.png")
         buttonImageHovered = pygame.image.load("res/buttons/mapHovered.png")
 
-        for location in self.getParent().locations:
+        for location in self.getRoot().locationManager.locations:
             x, y = location.mapLocation[0] - 16, location.mapLocation[1] - 16
             if location == self.getParent().currentLocation:
                 # Can't select because it is the current location
@@ -64,7 +65,7 @@ class TravelMenu(Menu):
 
     def createLabels(self):
         self.labels[:] = []
-        for location in self.getParent().locations:
+        for location in self.getRoot().locationManager.locations:
             newLabel = Label(location.name, fontSize=16)
             newLabel.rect.centerx = location.mapLocation[0]
             newLabel.rect.bottom = location.mapLocation[1] - 24
@@ -116,7 +117,7 @@ class MapNavigationHandler(MenuNavigationHandler):
             self.resetSelection()
 
     def locationSelected(self, locationName):
-        location = self.menu.getParent().getLocation(locationName)
+        location = self.menu.getRoot().locationManager.getLocation(locationName)
         self.selectedButton = self.getLocationButton(location)
         self.updateButtonFocus()
 
