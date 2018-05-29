@@ -27,6 +27,8 @@ class Menu:
         for event in events:
             if event.type == pygame.QUIT:
                 self.getRoot().running = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
+                self.getRoot().enterConsole()
         self.navigationHandler.handleNavigationEvents(events)
 
     def draw(self, surface, position=(0, 0)):

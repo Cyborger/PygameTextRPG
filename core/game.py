@@ -5,9 +5,9 @@ from states.locationState import LocationState
 from states.battleState import BattleState
 from lib.jsonLoader import JSONLoader
 from lib.display import Display
-from lib.message import Message
 from core.itemManager import ItemManager
 from core.player import Player
+from core.console import Console
 
 
 class Game:
@@ -21,6 +21,7 @@ class Game:
         self.player = Player()
         self.player.inventory.addItems(self.itemManager.getItem("Sword"))
         self.player.heldWeapon = self.player.inventory.getItems()[0]
+        self.console = Console(self)
 
     def start(self):
         self.changeMenu("locationState/mainLocationMenu")
@@ -62,6 +63,9 @@ class Game:
 
     def exit(self):
         self.display.fadeOut(1.0)
+
+    def enterConsole(self):
+        self.console.loop()
 
 
 class StateNotFoundException(Exception):

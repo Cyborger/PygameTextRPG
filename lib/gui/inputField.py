@@ -14,7 +14,8 @@ class InputField(Button):
 
         self.boxImage = self.createBoxImage(maxLength)
         self.inputLabel = Label("", self.borderWidth + self.xMargin,
-                                self.borderWidth + self.yMargin)
+                                self.borderWidth + self.yMargin,
+                                fontSize=fontSize)
         super().__init__(self.boxImage, self.selected, x=x, y=y)
 
         self.promptImage = pygame.Surface((2, self.font.size(" ")[1]))

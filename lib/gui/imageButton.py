@@ -5,7 +5,7 @@ class ImageButton(Button):
     def __init__(self, image, hoveredImage, func, *funcArgs,
                  x=0 , y=0):
         super().__init__(image, func, *funcArgs, x=x, y=y)
-        self.unhoveredImage = unhoveredImage
+        self.unhoveredImage = image
         self.hoveredImage = hoveredImage
 
     def hover(self):
