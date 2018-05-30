@@ -7,6 +7,7 @@ from lib.jsonLoader import JSONLoader
 from lib.display import Display
 from core.itemManager import ItemManager
 from core.locationManager import LocationManager
+from core.saveManager import SaveManager
 from core.player import Player
 from core.console import Console
 
@@ -16,6 +17,7 @@ class Game:
         self.display = Display(700, 700)
         self.itemManager = ItemManager()
         self.locationManager = LocationManager()
+        self.saveManager = SaveManager()
         self.states = [TitleMenuState(self), CharacterCreationState(self),
                        LocationState(self), BattleState(self)]
         self.currentState = None
@@ -24,6 +26,8 @@ class Game:
         self.player.inventory.addItems(self.itemManager.getItem("Sword"))
         self.player.heldWeapon = self.player.inventory.getItems()[0]
         self.console = Console(self)
+        self.currentSaveID = "default"
+        self.saveManager.createSave(self)
 
     def start(self):
         self.changeMenu("titleMenuState/titleMenu")

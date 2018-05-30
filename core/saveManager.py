@@ -1,19 +1,72 @@
 import pickle
+import os
+import random
 
 
 class SaveManager:
     def __init__(self):
-        pass
+        self.saves = []
+        self.loadSaves()
 
-    def getSaves(self):
-        pass
+    def createSave(self, game):
+        if self.saveExists(game.currentSaveID):
+            print("Save already exists")
+            self.getSave(game.currentSaveID).update(game)
+        else:
+            self.createNewSave(game)
 
-    def loadSave(self, fileName, game):
-        saveFile = pickle.load(open(fileName + ".p", "rb"))
-        game.player = saveFile["player"]
-        game.getState.currentLocation = saveFile["location"]
+    def createNewSave(self, game):
+        newID = self.generateRandomID()
+        self.saves.append(Save(newID, game))
 
-    def createSave(self, fileName, game):
-        saveFile = {"player" : game.player,
-                    "location" : game.getState("locationState").currentLocation}
-        pickle.dump(open(fileName + ".p", "wb"))
+    def saveExists(self, id_):
+        for save in self.saves:
+            if save.id_ == id_:
+                return True
+        return False
+
+    def getSave(self, id_):
+        for save in self.saves:
+            if save.id_ == id_:
+                return save
+
+    def generateRandomID(self):
+        id_ = ""
+        while True:
+            id_ = ""
+            for i in range(6):
+                id_ += str(random.randint(0, 9))
+            if not self.saveExists(id_):
+                break
+        return id_
+
+    def loadSaves(self):
+        self.saves[:] = []
+        for file in os.listdir("saves/"):
+            if file.endswith(".p"):
+                self.saves.append(pickle.load(open("saves/" + file, "rb")))
+
+class Save:
+    def __init__(self, id_, game):
+        self.id_ = id_
+        self.info = {}
+        self.update(game)
+        self.createFile()
+
+    def update(self, game):
+        currentLocation = game.getState("locationState").currentLocation
+        self.info = {"player" : game.player, "location" : currentLocation}
+
+    def getTitle(self):
+        name = self.info["player"].name
+        race = self.info["player"].race.name
+        playerClass = self.info["player"].playerClass.name
+        return name + " - " + race + " " + playerClass
+
+    def createFile(self):
+        with open("saves/" + self.id_ + ".p", "wb") as f:
+            pickle.dump(self, f)
+
+    def load(self, game):
+        game.player = self.info["player"]
+        game.getState("locationState").currentLocation = self.info["location"]

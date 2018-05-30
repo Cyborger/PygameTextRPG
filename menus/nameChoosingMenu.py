@@ -21,6 +21,7 @@ class NameChoosingMenu(Menu):
             self.getRoot().player = newPlayer
             self.getRoot().player.inventory.addItems(self.getRoot().itemManager.getItem("Sword"))
             self.getRoot().player.heldWeapon = self.getRoot().player.inventory.getItems()[0]
+            self.getRoot().saveManager.createNewSave(self.getRoot())
             self.getRoot().fadeMenuChange("locationState/mainLocationMenu",
                                           "slow")
 

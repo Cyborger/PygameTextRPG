@@ -1,20 +1,21 @@
 from lib.menu import Menu
 from lib.gui.labelButton import LabelButton
 
-class LoadSaveMenu(Menu):
+class LoadCharacterMenu(Menu):
     def __init__(self, parentState, menuToReturnTo):
-        super().__init__("loadSaveMenu", parentState)
+        super().__init__("loadCharacterMenu", parentState)
         self.menuToReturnTo = menuToReturnTo
 
     def nowCurrentMenu(self):
         self.buttons[:] = []
-        for save in self.getRoot().saveManager.getSaves():
-            self.addButtons(LabelButton(save, self.saveSelected, save))
+        for save in self.getRoot().saveManager.saves:
+            self.addButtons(LabelButton(save.getTitle(),
+                                        self.saveSelected, save, fontSize=16))
         self.listElements(self.buttons, 20, 20)
         self.addButtons(LabelButton("Back", self.goBack, x=20, y=600))
 
     def saveSelected(self, save):
-        self.game.saveManager.loadSave(save)
+        save.load(self.getRoot())
         self.getRoot().fadeMenuChange("locationState/mainLocationMenu")
 
     def goBack(self):
