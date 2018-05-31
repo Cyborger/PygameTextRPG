@@ -46,7 +46,7 @@ class TravelMenu(Menu):
 
         for location in self.getRoot().locationManager.locations:
             x, y = location.mapLocation[0] - 16, location.mapLocation[1] - 16
-            if location == self.getParent().currentLocation:
+            if location.name == self.getParent().currentLocation.name:
                 # Can't select because it is the current location
                 button = ImageButton(buttonImageCurrent, buttonImageCurrent,
                     self.locationChosen, location, x=x, y=y)

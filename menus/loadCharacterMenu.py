@@ -9,8 +9,8 @@ class LoadCharacterMenu(Menu):
     def nowCurrentMenu(self):
         self.buttons[:] = []
         for save in self.getRoot().saveManager.saves:
-            self.addButtons(LabelButton(save.getTitle(),
-                                        self.saveSelected, save, fontSize=16))
+            self.addButtons(LabelButton(save.getTitle(), self.saveSelected,
+                                        save))
         self.listElements(self.buttons, 20, 20)
         self.addButtons(LabelButton("Back", self.goBack, x=20, y=600))
 

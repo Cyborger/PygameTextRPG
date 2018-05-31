@@ -44,6 +44,7 @@ class MenuNavigationHandler:
                 button.checkForClick(self)
             else:
                 button.checkForClick()
+        pygame.event.clear()
 
     def handleTextFieldInputEvent(self, event):
         if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
@@ -72,6 +73,7 @@ class MenuNavigationHandler:
                 self.selectedButton.checkForClick(self)
             else:
                 self.selectedButton.checkForClick()
+                pygame.event.clear()
 
     def updateButtonFocus(self):
         for button in self.menu.buttons:

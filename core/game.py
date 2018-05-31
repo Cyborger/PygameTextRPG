@@ -68,7 +68,12 @@ class Game:
         self.currentState.currentMenu = newMessage
 
     def exit(self):
+        if self.currentSaveID is not "default":
+            self.saveGame()
         self.display.fadeOut(1.0)
+
+    def saveGame(self):
+        self.saveManager.createSave(self)
 
     def enterConsole(self):
         self.console.loop()

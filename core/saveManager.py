@@ -10,7 +10,6 @@ class SaveManager:
 
     def createSave(self, game):
         if self.saveExists(game.currentSaveID):
-            print("Save already exists")
             self.getSave(game.currentSaveID).update(game)
         else:
             self.createNewSave(game)
@@ -56,12 +55,12 @@ class Save:
     def update(self, game):
         currentLocation = game.getState("locationState").currentLocation
         self.info = {"player" : game.player, "location" : currentLocation}
+        self.createFile()
 
     def getTitle(self):
         name = self.info["player"].name
-        race = self.info["player"].race.name
         playerClass = self.info["player"].playerClass.name
-        return name + " - " + race + " " + playerClass
+        return name + " - " + playerClass
 
     def createFile(self):
         with open("saves/" + self.id_ + ".p", "wb") as f:
@@ -69,4 +68,5 @@ class Save:
 
     def load(self, game):
         game.player = self.info["player"]
+        game.currentSaveID = self.id_
         game.getState("locationState").currentLocation = self.info["location"]

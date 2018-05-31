@@ -26,7 +26,8 @@ class MainLocationMenu(Menu):
         if currentLocation.canRest:
             self.addButtons(LabelButton("Rest", self.rest))
         self.addButtons(LabelButton("Player Stats", self.playerStats),
-                        LabelButton("Inventory", self.goToInventory))
+                        LabelButton("Inventory", self.goToInventory),
+                        LabelButton("Exit", self.exit))
         self.listElements(self.buttons, 20, 350, align="center")
 
     def goToTravelMenu(self):
@@ -47,5 +48,6 @@ class MainLocationMenu(Menu):
     def goToInventory(self):
         self.getRoot().fadeMenuChange("inventoryMenu", "fast")
 
-    def placeholder(self):
-        pass
+    def exit(self):
+        self.getRoot().saveGame()
+        self.getRoot().fadeMenuChange("titleMenuState/titleMenu")
